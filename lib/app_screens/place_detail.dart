@@ -19,16 +19,20 @@ class _PlaceDetailState extends State<PlaceDetail> {
         children: [
           Stack(
             children: [
-              SizedBox(
-                width: dynamicWidth(context, 1),
-                height: dynamicHeight(context, .4),
-                child: homeSlider(
-                  context,
-                  dynamicHeight(context, .4),
-                  3,
-                  1.0,
-                  "assets/1.jpg",
-                ),
+              Column(
+                children: [
+                  SizedBox(
+                    width: dynamicWidth(context, 1),
+                    height: dynamicHeight(context, .4),
+                    child: homeSlider(
+                      context,
+                      dynamicHeight(context, .4),
+                      3,
+                      1.0,
+                      "assets/1.jpg",
+                    ),
+                  ),
+                ],
               ),
               SafeArea(
                 child: Padding(
