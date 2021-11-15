@@ -66,7 +66,7 @@ class SelectedDetailPage extends StatelessWidget {
             left: 0,
             child: Container(
               decoration: BoxDecoration(
-                color: Colors.black.withOpacity(.6),
+                color: Colors.black.withOpacity(.56),
               ),
               width: dynamicWidth(context, 1),
               padding: EdgeInsets.symmetric(
@@ -95,7 +95,9 @@ class SelectedDetailPage extends StatelessWidget {
                       "recommendedModel tagLine",
                       maxLines: 2,
                       overflow: TextOverflow.fade,
-                      style: TextStyle(color: Colors.white),
+                      style: TextStyle(
+                        color: myWhite,
+                      ),
                     ),
                   ),
                   Padding(
@@ -106,7 +108,9 @@ class SelectedDetailPage extends StatelessWidget {
                       "recommendedModel description",
                       maxLines: 3,
                       overflow: TextOverflow.fade,
-                      style: TextStyle(color: Colors.white),
+                      style: TextStyle(
+                        color: myWhite,
+                      ),
                     ),
                   ),
                   SizedBox(
@@ -122,7 +126,9 @@ class SelectedDetailPage extends StatelessWidget {
                           FittedBox(
                             child: Text(
                               'Start from',
-                              style: TextStyle(color: Colors.white),
+                              style: TextStyle(
+                                color: myWhite,
+                              ),
                             ),
                           ),
                         ],
@@ -134,7 +140,7 @@ class SelectedDetailPage extends StatelessWidget {
                           borderRadius: BorderRadius.circular(
                             dynamicWidth(context, .02),
                           ),
-                          color: Colors.white,
+                          color: myWhite,
                         ),
                         child: const Center(
                           child: Text(
