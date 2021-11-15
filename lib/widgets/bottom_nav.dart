@@ -29,17 +29,17 @@ class _BottomNavState extends State<BottomNav> {
           SalomonBottomBarItem(
             icon: const Icon(Icons.home),
             title: const Text("Home"),
-            selectedColor: primaryBlue,
+            selectedColor: myBlack,
           ),
           SalomonBottomBarItem(
             icon: const Icon(Icons.grid_view),
             title: const Text("States"),
-            selectedColor: primaryBlue,
+            selectedColor: myBlack,
           ),
           SalomonBottomBarItem(
             icon: const Icon(Icons.supervised_user_circle_rounded),
             title: const Text("Profile"),
-            selectedColor: primaryBlue,
+            selectedColor: myBlack,
           ),
         ],
       ),

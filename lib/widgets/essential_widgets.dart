@@ -9,8 +9,7 @@ customBar(text, {color = ""}) {
     title: Text(
       text,
       style: const TextStyle(
-        color: myBlack,
-      ),
+          color: myBlack, fontWeight: FontWeight.bold, fontSize: 30),
     ),
     centerTitle: true,
     iconTheme: IconThemeData(
@@ -21,22 +20,28 @@ customBar(text, {color = ""}) {
   );
 }
 
-Widget homeSlider(context, height, length, viewFraction, image,) {
+Widget homeSlider(
+  context,
+  height,
+  length,
+  viewFraction,
+  image,
+) {
   return CarouselSlider.builder(
     itemCount: length,
     itemBuilder: (BuildContext context, int itemIndex, int pageViewIndex) =>
         sliderContainer(context, image),
     options: CarouselOptions(
-        enableInfiniteScroll: false,
-        height: height,
-        enlargeCenterPage: false,
-        viewportFraction: viewFraction,
-        autoPlay: true,
-        autoPlayInterval: const Duration(seconds: 6),
-        autoPlayAnimationDuration: const Duration(seconds: 2),
-        aspectRatio: 16 / 9,
-        autoPlayCurve: Curves.fastLinearToSlowEaseIn,
-       ),
+      enableInfiniteScroll: false,
+      height: height,
+      enlargeCenterPage: false,
+      viewportFraction: viewFraction,
+      autoPlay: true,
+      autoPlayInterval: const Duration(seconds: 6),
+      autoPlayAnimationDuration: const Duration(seconds: 2),
+      aspectRatio: 16 / 9,
+      autoPlayCurve: Curves.fastLinearToSlowEaseIn,
+    ),
   );
 }
 

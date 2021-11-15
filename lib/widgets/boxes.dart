@@ -3,6 +3,7 @@ import 'package:ajk_tour/app_screens/state_details.dart';
 import 'package:ajk_tour/utils/app_routes.dart';
 import 'package:ajk_tour/utils/config.dart';
 import 'package:ajk_tour/widgets/dynamic_sizes.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -25,14 +26,14 @@ Widget stateCard(context, image, dynamic text, i) {
       child: Center(
         child: Container(
           width: dynamicWidth(context, .9),
-          height: dynamicHeight(context, .2),
+          height: dynamicHeight(context, .25),
           decoration: BoxDecoration(
             color: myWhite,
             borderRadius: BorderRadius.circular(
-              dynamicHeight(context, .02),
+              dynamicHeight(context, .015),
             ),
             image: DecorationImage(
-              image: AssetImage(
+              image: CachedNetworkImageProvider(
                 image,
               ),
               fit: BoxFit.cover,
@@ -48,7 +49,7 @@ Widget stateCard(context, image, dynamic text, i) {
           ),
           child: Material(
             borderRadius: BorderRadius.circular(
-              dynamicHeight(context, .02),
+              dynamicHeight(context, .015),
             ),
             color: myBlack.withOpacity(.4),
             child: Center(

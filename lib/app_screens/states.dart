@@ -11,6 +11,27 @@ class States extends StatefulWidget {
 }
 
 class _StatesState extends State<States> {
+  var arrayLocal = [
+    {
+      "image":
+          "https://www.pakistantravelguide.pk/wp-content/uploads/2016/11/boating-at-mangla-dam.png",
+      "name": "Mirpur"
+    },
+    {
+      "image":
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/7/72/Balakot_KunharRiver.jpg/440px-Balakot_KunharRiver.jpg",
+      "name": "Balakot"
+    },
+    {
+      "image": "https://www.visitswatvalley.com/images/naran-kaghan.jpg",
+      "name": "Naran"
+    },
+    {
+      "image":
+          "https://www.visitpk.com/wp-content/uploads/2018/03/paragliding-in-mountains-720x480.jpg",
+      "name": "Toli peer"
+    }
+  ];
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -18,13 +39,14 @@ class _StatesState extends State<States> {
         backgroundColor: myGrey,
         appBar: customBar("States"),
         body: ListView.builder(
-          itemCount: 4,
+          itemCount: arrayLocal.length,
           itemBuilder: (context, i) {
             return Hero(
               tag: i,
               child: Material(
                 color: noColor,
-                child: stateCard(context, "assets/1.jpg", "Mirpur", i),
+                child: stateCard(
+                    context, arrayLocal[i]["image"], arrayLocal[i]["name"], i),
               ),
             );
           },
