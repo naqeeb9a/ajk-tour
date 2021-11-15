@@ -1,7 +1,6 @@
 import 'package:ajk_tour/widgets/bottom_nav.dart';
 import 'package:flutter/material.dart';
 
-
 void main() {
   runApp(const MyApp());
 }

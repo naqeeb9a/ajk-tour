@@ -29,20 +29,20 @@ class _StateDetailState extends State<StateDetail> {
               children: [
                 SizedBox(
                   width: dynamicWidth(context, 1),
-                  height: dynamicHeight(context, .22),
+                  height: dynamicHeight(context, .24),
                   child: Stack(
                     children: [
                       SizedBox(
                         width: dynamicWidth(context, 1),
-                        height: dynamicHeight(context, .22),
-                        child: Image.asset(
+                        height: dynamicHeight(context, .24),
+                        child: Image.network(
                           widget.image.toString(),
                           fit: BoxFit.cover,
                         ),
                       ),
                       Container(
                         width: dynamicWidth(context, 1),
-                        height: dynamicHeight(context, .22),
+                        height: dynamicHeight(context, .24),
                         color: myBlack.withOpacity(.4),
                       ),
                       SizedBox(
