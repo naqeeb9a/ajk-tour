@@ -1,3 +1,4 @@
+import 'package:ajk_tour/utils/config.dart';
 import 'package:ajk_tour/widgets/boxes.dart';
 import 'package:ajk_tour/widgets/dynamic_sizes.dart';
 import 'package:ajk_tour/widgets/essential_widgets.dart';
@@ -15,6 +16,7 @@ class _StatesState extends State<States> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
+        backgroundColor: myGrey,
         appBar: customBar("States"),
         body: SizedBox(
           width: dynamicWidth(context, 1),

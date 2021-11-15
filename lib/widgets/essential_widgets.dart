@@ -1,9 +1,7 @@
 import 'package:ajk_tour/utils/config.dart';
 import 'package:flutter/material.dart';
 
-customBar(
-  text,
-) {
+customBar(text, {color = ""}) {
   return AppBar(
     title: Text(
       text,
@@ -12,8 +10,8 @@ customBar(
       ),
     ),
     centerTitle: true,
-    iconTheme: const IconThemeData(
-      color: myBlack,
+    iconTheme: IconThemeData(
+      color: color == "" ? myBlack : color,
     ),
     backgroundColor: Colors.transparent,
     elevation: 0,
