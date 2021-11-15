@@ -5,7 +5,7 @@ import 'package:ajk_tour/widgets/dynamic_sizes.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-Widget stateCard(context, image, dynamic text) {
+Widget stateCard(context, image, dynamic text,i) {
   return Padding(
     padding: EdgeInsets.symmetric(
       vertical: dynamicHeight(context, .012),
@@ -17,6 +17,7 @@ Widget stateCard(context, image, dynamic text) {
           StateDetail(
             stateName: text,
             image: image,
+            i: i,
           ),
         );
       },

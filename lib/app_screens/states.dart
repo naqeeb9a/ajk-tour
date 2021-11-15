@@ -28,7 +28,11 @@ class _StatesState extends State<States> {
             child: ListView.builder(
               itemCount: 4,
               itemBuilder: (context, i) {
-                return stateCard(context, "assets/1.jpg", "Mirpur");
+                return Hero(
+                    tag: i,
+                    child: Material(
+                        child:
+                            stateCard(context, "assets/1.jpg", "Mirpur", i)));
               },
             ),
           ),
