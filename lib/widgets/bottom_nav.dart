@@ -1,5 +1,6 @@
 import 'package:ajk_tour/app_screens/home_page.dart';
 import 'package:ajk_tour/app_screens/profile.dart';
+import 'package:ajk_tour/app_screens/states.dart';
 import 'package:ajk_tour/utils/config.dart';
 import 'package:flutter/material.dart';
 import 'package:salomon_bottom_bar/salomon_bottom_bar.dart';
@@ -33,6 +34,11 @@ class _BottomNavState extends State<BottomNav> {
             selectedColor: primaryBlue,
           ),
           SalomonBottomBarItem(
+            icon: const Icon(Icons.grid_view),
+            title: const Text("States"),
+            selectedColor: primaryBlue,
+          ),
+          SalomonBottomBarItem(
             icon: const Icon(Icons.supervised_user_circle_rounded),
             title: const Text("Profile"),
             selectedColor: primaryBlue,
@@ -47,6 +53,8 @@ class _BottomNavState extends State<BottomNav> {
       case 0:
         return const HomePage();
       case 1:
+        return const States();
+      case 2:
         return const Profile();
       default:
         return Column(

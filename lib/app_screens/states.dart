@@ -1,3 +1,6 @@
+import 'package:ajk_tour/widgets/boxes.dart';
+import 'package:ajk_tour/widgets/dynamic_sizes.dart';
+import 'package:ajk_tour/widgets/essential_widgets.dart';
 import 'package:flutter/material.dart';
 
 class States extends StatefulWidget {
@@ -10,8 +13,25 @@ class States extends StatefulWidget {
 class _StatesState extends State<States> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-
+    return SafeArea(
+      child: Scaffold(
+        appBar: customBar("States"),
+        body: SizedBox(
+          width: dynamicWidth(context, 1),
+          height: dynamicHeight(context, 1),
+          child: Padding(
+            padding: EdgeInsets.symmetric(
+              vertical: dynamicHeight(context, .024),
+            ),
+            child: ListView.builder(
+              itemCount: 4,
+              itemBuilder: (context, i) {
+                return stateCard(context, "assets/1.jpg", "Mirpur");
+              },
+            ),
+          ),
+        ),
+      ),
     );
   }
 }
