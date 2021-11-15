@@ -1,3 +1,5 @@
+import 'package:ajk_tour/app_screens/selected_detail_page.dart';
+import 'package:ajk_tour/utils/app_routes.dart';
 import 'package:ajk_tour/widgets/dynamic_sizes.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:carousel_slider/carousel_slider.dart';
@@ -116,7 +118,7 @@ rowText() {
       crossAxisAlignment: CrossAxisAlignment.center,
       children: const <Widget>[
         Text(
-          'Popular Categories',
+          'Popular Places',
           style: TextStyle(
             fontWeight: FontWeight.bold,
             fontSize: 20,
@@ -141,7 +143,9 @@ upperCards(context, _pageController) {
       children: List.generate(
         tabImages.length,
         (int index) => GestureDetector(
-          onTap: () {},
+          onTap: () {
+            push(context, SelectedDetailPage());
+          },
           child: Container(
             margin: const EdgeInsets.only(right: 28.8),
             decoration: BoxDecoration(
