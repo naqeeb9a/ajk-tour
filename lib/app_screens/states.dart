@@ -29,10 +29,11 @@ class _StatesState extends State<States> {
               itemCount: 4,
               itemBuilder: (context, i) {
                 return Hero(
-                    tag: i,
-                    child: Material(
-                        child:
-                            stateCard(context, "assets/1.jpg", "Mirpur", i)));
+                  tag: i,
+                  child: Material(
+                    child: stateCard(context, "assets/1.jpg", "Mirpur", i),
+                  ),
+                );
               },
             ),
           ),

@@ -72,19 +72,20 @@ class _StateDetailState extends State<StateDetail> {
                     ],
                   ),
                 ),
-                SizedBox(
-                  width: dynamicWidth(context, 1),
-                  height: dynamicHeight(context, .7),
-                  child: Padding(
-                    padding: EdgeInsets.symmetric(
-                      vertical: dynamicHeight(context, .024),
-                    ),
-                    child: ListView.builder(
-                      itemCount: 4,
-                      itemBuilder: (context, i) {
-                        return stateDetailCard(
-                            context, "assets/1.jpg", "place abc", "Mirpur");
-                      },
+                Flexible(
+                  child: SizedBox(
+                    width: dynamicWidth(context, 1),
+                    child: Padding(
+                      padding: EdgeInsets.symmetric(
+                        vertical: dynamicHeight(context, .024),
+                      ),
+                      child: ListView.builder(
+                        itemCount: 4,
+                        itemBuilder: (context, i) {
+                          return stateDetailCard(
+                              context, "assets/1.jpg", "place abc", "Mirpur");
+                        },
+                      ),
                     ),
                   ),
                 ),
