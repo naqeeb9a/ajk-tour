@@ -31,6 +31,7 @@ class _StatesState extends State<States> {
                 return Hero(
                   tag: i,
                   child: Material(
+                    color: noColor,
                     child: stateCard(context, "assets/1.jpg", "Mirpur", i),
                   ),
                 );
