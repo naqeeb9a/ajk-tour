@@ -19,11 +19,11 @@ var tabsArray = [
   "Main Attractions"
 ];
 var tabImages = [
-  "https://www.globalvillagespace.com/wp-content/uploads/2020/10/Azad-Kashmir-Bringing-Water-Power-Beauty-to-Pakistan-CPEC.jpg",
   "https://www.pakvoyager.com/uploads/0000/18/2021/04/30/azad-kashmir-tours.jpg",
+  "https://www.samaa.tv/wp-content/uploads/2021/07/azad-kashmir-tourism.jpg",
+  "https://www.globalvillagespace.com/wp-content/uploads/2020/10/Azad-Kashmir-Bringing-Water-Power-Beauty-to-Pakistan-CPEC.jpg",
   "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/0a/7a/43/5b/gurez-valley-kel-to-taobat.jpg?w=700&h=500&s=1",
   "https://upload.wikimedia.org/wikipedia/commons/7/70/Neeulm_Valley_AJK_%28Arang_Kel%29.jpg",
-  "https://www.samaa.tv/wp-content/uploads/2021/07/azad-kashmir-tourism.jpg"
 ];
 var tabImages1 = [
   "https://i.tribune.com.pk/media/images/988321-ajkx-1447108976/988321-ajkx-1447108976.jpeg",
