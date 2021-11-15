@@ -19,10 +19,8 @@ class _BottomNavState extends State<BottomNav> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: myWhite,
-      body: Container(
-        child: Center(
-          child: _getPage(currentPage),
-        ),
+      body: Center(
+        child: _getPage(currentPage),
       ),
       bottomNavigationBar: SalomonBottomBar(
         currentIndex: currentPage,
