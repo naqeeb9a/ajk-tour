@@ -1,3 +1,4 @@
+import 'package:ajk_tour/app_screens/place_detail.dart';
 import 'package:ajk_tour/app_screens/state_details.dart';
 import 'package:ajk_tour/utils/app_routes.dart';
 import 'package:ajk_tour/utils/config.dart';
@@ -74,7 +75,12 @@ Widget stateDetailCard(context, image, placeName, state) {
       vertical: dynamicHeight(context, .012),
     ),
     child: InkWell(
-      onTap: () {},
+      onTap: () {
+        push(
+          context,
+          const PlaceDetail(),
+        );
+      },
       child: Center(
         child: Container(
           width: dynamicWidth(context, .9),
