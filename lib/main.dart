@@ -1,3 +1,4 @@
+import 'package:ajk_tour/widgets/bottom_nav.dart';
 import 'package:flutter/material.dart';
 
 import 'app_screens/home_page.dart';
@@ -12,11 +13,12 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       title: 'AJK Tour',
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: const HomePage(),
+      home: const BottomNav(),
     );
   }
 }
