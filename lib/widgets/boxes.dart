@@ -36,7 +36,7 @@ Widget stateCard(context, image, dynamic text, page) {
             ),
             boxShadow: [
               BoxShadow(
-                color: myBlack.withOpacity(0.3),
+                color: myBlack.withOpacity(0.4),
                 spreadRadius: 2,
                 blurRadius: 6,
                 offset: const Offset(0, 3), // changes position of shadow
