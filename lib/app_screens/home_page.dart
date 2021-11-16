@@ -1,3 +1,4 @@
+import 'package:ajk_tour/app_screens/search_screen.dart';
 import 'package:ajk_tour/app_screens/selected_detail_page.dart';
 import 'package:ajk_tour/utils/app_routes.dart';
 import 'package:ajk_tour/widgets/dynamic_sizes.dart';
@@ -39,7 +40,15 @@ class _HomePageState extends State<HomePage> {
                       style:
                           TextStyle(fontSize: 40, fontWeight: FontWeight.bold),
                     ),
-                    upperIcons(Icons.search),
+                    InkWell(
+                      onTap: () {
+                        push(context, const SearchScreen());
+                      },
+                      child: Hero(
+                        tag: "SearchBar",
+                        child: upperIcons(Icons.search),
+                      ),
+                    )
                   ],
                 ),
               ),
