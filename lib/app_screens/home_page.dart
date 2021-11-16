@@ -1,12 +1,11 @@
 import 'package:ajk_tour/app_screens/search_screen.dart';
 import 'package:ajk_tour/app_screens/selected_detail_page.dart';
 import 'package:ajk_tour/utils/app_routes.dart';
+import 'package:ajk_tour/utils/config.dart';
 import 'package:ajk_tour/widgets/dynamic_sizes.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
-
-import 'package:ajk_tour/utils/config.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 class HomePage extends StatefulWidget {
@@ -18,74 +17,93 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   final _pageController = PageController(viewportFraction: 0.877);
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: myGrey,
-      body: SafeArea(
-        child: SingleChildScrollView(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Padding(
-                padding: const EdgeInsets.symmetric(
-                  horizontal: 30,
-                  vertical: 40,
-                ),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    const Text(
-                      "Explore\nthe Nature",
-                      style:
-                          TextStyle(fontSize: 40, fontWeight: FontWeight.bold),
+      body: SingleChildScrollView(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            SafeArea(
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Image.asset(
+                    "assets/ajkFlag.gif",
+                    height: dynamicHeight(context, .1),
+                  ),
+                ],
+              ),
+            ),
+            Padding(
+              padding: EdgeInsets.symmetric(
+                horizontal: dynamicHeight(context, .03),
+                vertical: dynamicHeight(context, .04),
+              ),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(
+                    "Explore\nthe Nature",
+                    style: TextStyle(
+                        fontSize: dynamicWidth(context, .1),
+                        fontWeight: FontWeight.bold),
+                  ),
+                  InkWell(
+                    onTap: () {
+                      push(
+                        context,
+                        const SearchScreen(),
+                      );
+                    },
+                    child: Hero(
+                      tag: "SearchBar",
+                      child: upperIcons(Icons.search),
                     ),
-                    InkWell(
-                      onTap: () {
-                        push(context, const SearchScreen());
-                      },
-                      child: Hero(
-                        tag: "SearchBar",
-                        child: upperIcons(Icons.search),
-                      ),
-                    )
-                  ],
-                ),
+                  )
+                ],
               ),
-              SizedBox(
-                height: dynamicHeight(context, 0.01),
-              ),
-              tabsListing(),
-              SizedBox(
-                height: dynamicHeight(context, 0.03),
-              ),
-              upperCards(context, _pageController),
-              smoothIndicatorCustomView(tabImages, _pageController),
-              rowText(),
-              lowerCards(tabImages1),
-            ],
-          ),
+            ),
+            tabsListing(context),
+            SizedBox(
+              height: dynamicHeight(context, 0.01),
+            ),
+            upperCards(context, _pageController),
+            smoothIndicatorCustomView(tabImages, _pageController),
+            rowText(),
+            lowerCards(tabImages1),
+          ],
         ),
       ),
     );
   }
 }
 
-tabsListing() {
+tabsListing(
+  context,
+) {
   return Container(
-    height: 30,
-    margin: const EdgeInsets.only(left: 14.4, top: 28.8),
-    child: const DefaultTabController(
+    height: dynamicHeight(context, .04),
+    margin: EdgeInsets.only(
+      left: dynamicWidth(context, .04),
+    ),
+    child: DefaultTabController(
       length: 4,
       child: TabBar(
-          labelPadding: EdgeInsets.only(left: 14.4, right: 14.4),
-          indicatorPadding: EdgeInsets.only(left: 14.4, right: 14.4),
+          labelPadding: EdgeInsets.symmetric(
+            horizontal: dynamicWidth(context, .03),
+          ),
+          indicatorPadding: EdgeInsets.symmetric(
+            horizontal: dynamicWidth(context, .03),
+          ),
           isScrollable: true,
-          labelColor: Color(0xFF000000),
-          unselectedLabelColor: Color(0xFF8a8a8a),
-          indicatorColor: Colors.black,
+          labelColor: myBlack,
+          unselectedLabelColor: myBlack.withOpacity(.5),
+          indicatorColor: myBlack,
           indicatorSize: TabBarIndicatorSize.label,
-          tabs: [
+          tabs: const [
             Tab(
               child: Text('Recommended'),
             ),
