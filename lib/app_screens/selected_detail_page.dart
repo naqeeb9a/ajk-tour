@@ -49,7 +49,7 @@ class SelectedDetailPage extends StatelessWidget {
                     borderRadius: BorderRadius.circular(
                       dynamicWidth(context, .02),
                     ),
-                    color: myBlack,
+                    color: myBlack.withOpacity(0.5),
                   ),
                   child: const Center(
                     child: Icon(
