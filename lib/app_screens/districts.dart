@@ -1,7 +1,6 @@
 import 'package:ajk_tour/utils/config.dart';
 import 'package:ajk_tour/widgets/boxes.dart';
 import 'package:ajk_tour/widgets/dynamic_sizes.dart';
-import 'package:ajk_tour/widgets/essential_widgets.dart';
 import 'package:flutter/material.dart';
 
 class Districts extends StatefulWidget {
@@ -38,36 +37,79 @@ class _DistrictsState extends State<Districts> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: myGrey,
-      body: Column(
-        children: [
-          imageHeader(
-            context,
-            "https://www.visitpk.com/wp-content/uploads/2018/03/paragliding-in-mountains-720x480.jpg",
-            "Districts",
-            false,
-          ),
-          Flexible(
-            child: Padding(
-              padding: EdgeInsets.symmetric(
-                vertical: dynamicHeight(context, .02),
-              ),
-              child: ListView.builder(
-                itemCount: arrayLocal.length,
-                itemBuilder: (context, i) {
-                  return Hero(
-                    tag: i,
-                    child: Material(
-                      color: noColor,
-                      child: stateCard(context, arrayLocal[i]["image"],
-                          arrayLocal[i]["name"], i),
+      body: NestedScrollView(
+          headerSliverBuilder: (BuildContext context, bool innerBoxIsScrolled) {
+            return <Widget>[
+              SliverAppBar(
+                backgroundColor: myBlack,
+                expandedHeight: dynamicHeight(context, .24),
+                floating: false,
+                pinned: true,
+                flexibleSpace: FlexibleSpaceBar(
+                  centerTitle: true,
+                  title: Text(
+                    "Districts",
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: dynamicWidth(context, .06),
                     ),
-                  );
-                },
+                  ),
+                  background: Image.network(
+                    "https://www.visitpk.com/wp-content/uploads/2018/03/paragliding-in-mountains-720x480.jpg",
+                    fit: BoxFit.cover,
+                  ),
+                ),
               ),
+            ];
+          },
+          body: Padding(
+            padding: EdgeInsets.symmetric(
+              vertical: dynamicHeight(context, .02),
             ),
-          ),
-        ],
-      ),
+            child: ListView.builder(
+              itemCount: arrayLocal.length,
+              itemBuilder: (context, i) {
+                return Hero(
+                  tag: i,
+                  child: Material(
+                    color: noColor,
+                    child: stateCard(context, arrayLocal[i]["image"],
+                        arrayLocal[i]["name"], i),
+                  ),
+                );
+              },
+            ),
+          )),
+      // body: Column(
+      //   children: [
+      //     imageHeader(
+      //       context,
+      //       "https://www.visitpk.com/wp-content/uploads/2018/03/paragliding-in-mountains-720x480.jpg",
+      //       "Districts",
+      //       false,
+      //     ),
+      //     Flexible(
+      //       child: Padding(
+      //         padding: EdgeInsets.symmetric(
+      //           vertical: dynamicHeight(context, .02),
+      //         ),
+      //         child: ListView.builder(
+      //           itemCount: arrayLocal.length,
+      //           itemBuilder: (context, i) {
+      //             return Hero(
+      //               tag: i,
+      //               child: Material(
+      //                 color: noColor,
+      //                 child: stateCard(context, arrayLocal[i]["image"],
+      //                     arrayLocal[i]["name"], i),
+      //               ),
+      //             );
+      //           },
+      //         ),
+      //       ),
+      //     ),
+      //   ],
+      // ),
     );
   }
 }
