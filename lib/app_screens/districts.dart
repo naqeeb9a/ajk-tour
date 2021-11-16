@@ -1,5 +1,6 @@
 import 'package:ajk_tour/utils/config.dart';
 import 'package:ajk_tour/widgets/boxes.dart';
+import 'package:ajk_tour/widgets/dynamic_sizes.dart';
 import 'package:ajk_tour/widgets/essential_widgets.dart';
 import 'package:flutter/material.dart';
 
@@ -32,25 +33,40 @@ class _DistrictsState extends State<Districts> {
       "name": "Toli peer"
     }
   ];
+
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Scaffold(
-        backgroundColor: myGrey,
-        appBar: customBar("Districts"),
-        body: ListView.builder(
-          itemCount: arrayLocal.length,
-          itemBuilder: (context, i) {
-            return Hero(
-              tag: i,
-              child: Material(
-                color: noColor,
-                child: stateCard(
-                    context, arrayLocal[i]["image"], arrayLocal[i]["name"], i),
+    return Scaffold(
+      backgroundColor: myGrey,
+      body: Column(
+        children: [
+          imageHeader(
+            context,
+            "https://www.visitpk.com/wp-content/uploads/2018/03/paragliding-in-mountains-720x480.jpg",
+            "Districts",
+            false,
+          ),
+          Flexible(
+            child: Padding(
+              padding: EdgeInsets.symmetric(
+                vertical: dynamicHeight(context, .02),
               ),
-            );
-          },
-        ),
+              child: ListView.builder(
+                itemCount: arrayLocal.length,
+                itemBuilder: (context, i) {
+                  return Hero(
+                    tag: i,
+                    child: Material(
+                      color: noColor,
+                      child: stateCard(context, arrayLocal[i]["image"],
+                          arrayLocal[i]["name"], i),
+                    ),
+                  );
+                },
+              ),
+            ),
+          ),
+        ],
       ),
     );
   }
