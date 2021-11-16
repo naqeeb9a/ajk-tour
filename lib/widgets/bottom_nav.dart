@@ -1,5 +1,5 @@
 import 'package:ajk_tour/app_screens/home_page.dart';
-import 'package:ajk_tour/app_screens/profile.dart';
+import 'package:ajk_tour/app_screens/settings.dart';
 import 'package:ajk_tour/app_screens/states.dart';
 import 'package:ajk_tour/utils/config.dart';
 import 'package:flutter/material.dart';
@@ -38,7 +38,7 @@ class _BottomNavState extends State<BottomNav> {
           ),
           SalomonBottomBarItem(
             icon: const Icon(Icons.supervised_user_circle_rounded),
-            title: const Text("Profile"),
+            title: const Text("Settings"),
             selectedColor: myBlack,
           ),
         ],
@@ -53,7 +53,7 @@ class _BottomNavState extends State<BottomNav> {
       case 1:
         return const States();
       case 2:
-        return const Profile();
+        return const Settings();
       default:
         return Column(
           mainAxisSize: MainAxisSize.min,
