@@ -32,12 +32,12 @@ class _BottomNavState extends State<BottomNav> {
             selectedColor: myBlack,
           ),
           SalomonBottomBarItem(
-            icon: const Icon(Icons.grid_view),
+            icon: const Icon(Icons.grid_view_rounded),
             title: const Text("Districts"),
             selectedColor: myBlack,
           ),
           SalomonBottomBarItem(
-            icon: const Icon(Icons.supervised_user_circle_rounded),
+            icon: const Icon(Icons.settings),
             title: const Text("Settings"),
             selectedColor: myBlack,
           ),
