@@ -41,23 +41,27 @@ class _DistrictsState extends State<Districts> {
           headerSliverBuilder: (BuildContext context, bool innerBoxIsScrolled) {
             return <Widget>[
               SliverAppBar(
-                backgroundColor: myBlack,
+                backgroundColor: myGrey,
                 expandedHeight: dynamicHeight(context, .24),
                 floating: false,
                 pinned: true,
-                flexibleSpace: FlexibleSpaceBar(
-                  centerTitle: true,
-                  title: Text(
-                    "Districts",
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontSize: dynamicWidth(context, .06),
-                    ),
-                  ),
-                  background: Image.network(
-                    "https://www.visitpk.com/wp-content/uploads/2018/03/paragliding-in-mountains-720x480.jpg",
-                    fit: BoxFit.cover,
-                  ),
+                flexibleSpace: LayoutBuilder(
+                  builder: (BuildContext context, BoxConstraints constraints) {
+                    return FlexibleSpaceBar(
+                      centerTitle: true,
+                      title: Text(
+                        "Districts".toUpperCase(),
+                        style: TextStyle(
+                          color: constraints.biggest.height == 88 ? myBlack : myWhite,
+                          fontSize: dynamicWidth(context, .06),
+                        ),
+                      ),
+                      background: Image.network(
+                        "https://www.visitpk.com/wp-content/uploads/2018/03/paragliding-in-mountains-720x480.jpg",
+                        fit: BoxFit.cover,
+                      ),
+                    );
+                  },
                 ),
               ),
             ];
