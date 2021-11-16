@@ -1,17 +1,22 @@
-import 'package:ajk_tour/app_screens/cities.dart';
 import 'package:ajk_tour/utils/config.dart';
 import 'package:ajk_tour/widgets/boxes.dart';
 import 'package:ajk_tour/widgets/dynamic_sizes.dart';
 import 'package:flutter/material.dart';
 
-class Districts extends StatefulWidget {
-  const Districts({Key? key}) : super(key: key);
+import 'district_details.dart';
+
+class Cities extends StatefulWidget {
+  final String cityName, image;
+
+  const Cities({Key? key, required this.cityName, required this.image})
+      : super(key: key);
 
   @override
-  _DistrictsState createState() => _DistrictsState();
+  _CitiesState createState() => _CitiesState();
 }
 
-class _DistrictsState extends State<Districts> {
+class _CitiesState extends State<Cities> {
+  dynamic top = 0.0;
   var arrayLocal = [
     {
       "image":
@@ -46,21 +51,23 @@ class _DistrictsState extends State<Districts> {
               expandedHeight: dynamicHeight(context, .24),
               floating: false,
               pinned: true,
+              iconTheme: IconThemeData(
+                color: top == 88 ? myBlack : myWhite,
+              ),
               flexibleSpace: LayoutBuilder(
                 builder: (BuildContext context, BoxConstraints constraints) {
+                  top = constraints.biggest.height;
                   return FlexibleSpaceBar(
                     centerTitle: true,
                     title: Text(
-                      "Districts".toUpperCase(),
+                      widget.cityName.toUpperCase(),
                       style: TextStyle(
-                        color: constraints.biggest.height == 88
-                            ? myBlack
-                            : myWhite,
+                        color: top == 88 ? myBlack : myWhite,
                         fontSize: dynamicWidth(context, .06),
                       ),
                     ),
                     background: Image.network(
-                      "https://www.visitpk.com/wp-content/uploads/2018/03/paragliding-in-mountains-720x480.jpg",
+                      widget.image.toString(),
                       fit: BoxFit.cover,
                     ),
                   );
@@ -84,11 +91,11 @@ class _DistrictsState extends State<Districts> {
                     context,
                     arrayLocal[i]["image"],
                     arrayLocal[i]["name"],
-                    Cities(
-                      cityName: arrayLocal[i]["name"].toString(),
+                    DistrictDetail(
+                      stateName: arrayLocal[i]["name"].toString(),
                       image: arrayLocal[i]["image"].toString(),
+                      i: i,
                     ),
-
                   ),
                 ),
               );
