@@ -27,20 +27,35 @@ class _HomePageState extends State<HomePage> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             SafeArea(
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Image.asset(
-                    "assets/ajkFlag.gif",
-                    height: dynamicHeight(context, .1),
-                  ),
-                ],
+              child: Padding(
+                padding: EdgeInsets.symmetric(
+                  vertical: dynamicHeight(context, .01),
+                  horizontal: dynamicWidth(context, .06),
+                ),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: [
+                    Image.asset(
+                      "assets/ajk_logo.png",
+                      height: dynamicHeight(context, .08),
+                    ),
+                    SizedBox(
+                      width: dynamicWidth(context, .06),
+                    ),
+                    Text(
+                      "Welcome to\nAzad Jammu Kashmir",
+                      style: TextStyle(
+                          fontSize: dynamicWidth(context, .054),
+                          fontWeight: FontWeight.bold),
+                    ),
+                  ],
+                ),
               ),
             ),
             Padding(
               padding: EdgeInsets.symmetric(
                 horizontal: dynamicHeight(context, .03),
-                vertical: dynamicHeight(context, .04),
+                vertical: dynamicHeight(context, .03),
               ),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
