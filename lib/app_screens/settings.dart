@@ -1,3 +1,5 @@
+import 'package:ajk_tour/utils/config.dart';
+import 'package:ajk_tour/widgets/dynamic_sizes.dart';
 import 'package:flutter/material.dart';
 
 class Settings extends StatelessWidget {
@@ -6,45 +8,141 @@ class Settings extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        body: SafeArea(
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+      backgroundColor: myGrey,
+      body: Column(
+        mainAxisAlignment: MainAxisAlignment.start,
         children: [
-          Container(
-            alignment: Alignment.bottomCenter,
-            width: MediaQuery.of(context).size.width,
-            height: MediaQuery.of(context).size.height / 5,
-            child: const Padding(
-              padding: EdgeInsets.only(top: 30),
-              child: Text("Settings",
-                  style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold)),
+          Stack(
+            children: [
+              Container(
+                width: dynamicWidth(context, 1),
+                height: dynamicHeight(context, .24),
+                color: myBlack,
+                padding: EdgeInsets.symmetric(
+                  vertical: dynamicHeight(context, .03),
+                  horizontal: dynamicWidth(context, .06),
+                ),
+                child: SafeArea(
+                  child: Text(
+                    "Settings",
+                    style: TextStyle(
+                      color: myWhite,
+                      fontSize: dynamicWidth(context, .064),
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                ),
+              ),
+              Padding(
+                padding: EdgeInsets.only(
+                  top: dynamicHeight(context, .11),
+                ),
+                child: Center(
+                  child: SafeArea(
+                    child: Container(
+                      width: dynamicWidth(context, .38),
+                      height: dynamicHeight(context, .18),
+                      decoration: BoxDecoration(
+                        color: myWhite,
+                        shape: BoxShape.circle,
+                        boxShadow: [
+                          BoxShadow(
+                            color: myBlack.withOpacity(0.2),
+                            spreadRadius: 2,
+                            blurRadius: 6,
+                            offset: const Offset(
+                                0, 3), // changes position of shadow
+                          ),
+                        ],
+                      ),
+                      child: Icon(
+                        Icons.person,
+                        size: dynamicHeight(context, .12),
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+            ],
+          ),
+          Padding(
+            padding: EdgeInsets.symmetric(
+              vertical: dynamicHeight(context, .014),
+            ),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Text(
+                  "User Name",
+                  style: TextStyle(
+                    color: myBlack,
+                    fontSize: dynamicWidth(context, .06),
+                    fontWeight: FontWeight.w600,
+                  ),
+                ),
+                CircleAvatar(
+                  radius: dynamicHeight(context, .024),
+                  backgroundColor: noColor,
+                  child: Icon(
+                    Icons.keyboard_arrow_down_rounded,
+                    size: dynamicHeight(context, .04),
+                    color: myBlack,
+                  ),
+                ),
+              ],
             ),
           ),
-          const Text("Account"),
-          const ListTile(
-            leading: Icon(Icons.person),
-            title: Text("Naqeeb Ur Rehman"),
-            subtitle: Text("Personal Info"),
-            trailing: Icon(Icons.arrow_forward_ios_outlined),
+          SizedBox(
+            height: dynamicHeight(context, .02),
           ),
-          const Text("Settings"),
-          tiles(
-              Icons.language, "Language", Icons.arrow_forward_ios_outlined, 20),
-          tiles(Icons.notifications, "Notification",
-              Icons.arrow_forward_ios_outlined, 20),
-          tiles(Icons.help, "Help", Icons.arrow_forward_ios_outlined, 20),
-          tiles(Icons.contact_mail, "Naqeeb9a@gmail.com",
-              Icons.arrow_forward_ios_outlined, 20),
+          tiles(context, Icons.language, "Language"),
+          tiles(context, Icons.language, "Language"),
+          tiles(context, Icons.language, "Language"),
+          tiles(context, Icons.language, "Language"),
         ],
       ),
-    ));
+    );
   }
 }
 
-Widget tiles(icons1, text, icons2, radius) {
-  return ListTile(
-    leading: CircleAvatar(radius: 20, child: Icon(icons1)),
-    title: Text(text),
-    trailing: Icon(icons2),
+Widget tiles(context, icon, text) {
+  return Padding(
+    padding: EdgeInsets.symmetric(
+      vertical: dynamicHeight(context, .01),
+    ),
+    child: Container(
+      width: dynamicWidth(context, .8),
+      decoration: const BoxDecoration(
+        border: Border(
+          bottom: BorderSide(
+            color: Colors.black,
+            width: 2.0,
+          ),
+        ),
+      ),
+      child: ListTile(
+        contentPadding: const EdgeInsets.symmetric(
+          vertical: 0.0,
+        ),
+        leading: Icon(
+          icon,
+          size: dynamicHeight(context, .04),
+          color: myBlack,
+        ),
+        title: Text(
+          text,
+          style: TextStyle(
+            fontSize: dynamicWidth(context, .052),
+            color: myBlack,
+            fontWeight: FontWeight.w600,
+          ),
+        ),
+        trailing: Icon(
+          Icons.arrow_forward_ios_rounded,
+          size: dynamicHeight(context, .032),
+          color: myBlack,
+        ),
+      ),
+    ),
   );
 }
