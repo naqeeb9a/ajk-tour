@@ -1,6 +1,5 @@
 import 'package:ajk_tour/utils/config.dart';
 import 'package:ajk_tour/widgets/boxes.dart';
-import 'package:ajk_tour/widgets/dynamic_sizes.dart';
 import 'package:ajk_tour/widgets/essential_widgets.dart';
 import 'package:flutter/material.dart';
 
@@ -33,40 +32,25 @@ class _DistrictsState extends State<Districts> {
       "name": "Toli peer"
     }
   ];
-
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: myGrey,
-      body: Column(
-        children: [
-          imageHeader(
-            context,
-            "https://i.ytimg.com/vi/gn41AiFNpag/maxresdefault.jpg",
-            "Districts",
-            true,
-          ),
-          Flexible(
-            child: Padding(
-              padding: EdgeInsets.symmetric(
-                vertical: dynamicHeight(context, .02),
+    return SafeArea(
+      child: Scaffold(
+        backgroundColor: myGrey,
+        appBar: customBar("Districts"),
+        body: ListView.builder(
+          itemCount: arrayLocal.length,
+          itemBuilder: (context, i) {
+            return Hero(
+              tag: i,
+              child: Material(
+                color: noColor,
+                child: stateCard(
+                    context, arrayLocal[i]["image"], arrayLocal[i]["name"], i),
               ),
-              child: ListView.builder(
-                itemCount: arrayLocal.length,
-                itemBuilder: (context, i) {
-                  return Hero(
-                    tag: i,
-                    child: Material(
-                      color: noColor,
-                      child: stateCard(context, arrayLocal[i]["image"],
-                          arrayLocal[i]["name"], i),
-                    ),
-                  );
-                },
-              ),
-            ),
-          ),
-        ],
+            );
+          },
+        ),
       ),
     );
   }
