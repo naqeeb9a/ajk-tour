@@ -60,7 +60,7 @@ class _HomePageState extends State<HomePage> {
                     },
                     child: Hero(
                       tag: "SearchBar",
-                      child: upperIcons(Icons.search),
+                      child: upperIcons(context, Icons.search),
                     ),
                   )
                 ],
@@ -71,9 +71,9 @@ class _HomePageState extends State<HomePage> {
               height: dynamicHeight(context, 0.01),
             ),
             upperCards(context, _pageController),
-            smoothIndicatorCustomView(tabImages, _pageController),
-            rowText(),
-            lowerCards(tabImages1),
+            smoothIndicatorCustomView(context, tabImages, _pageController),
+            rowText(context),
+            lowerCards(context, tabImages1),
           ],
         ),
       ),
@@ -92,67 +92,76 @@ tabsListing(
     child: DefaultTabController(
       length: 4,
       child: TabBar(
-          labelPadding: EdgeInsets.symmetric(
-            horizontal: dynamicWidth(context, .03),
+        labelPadding: EdgeInsets.symmetric(
+          horizontal: dynamicWidth(context, .03),
+        ),
+        indicatorPadding: EdgeInsets.symmetric(
+          horizontal: dynamicWidth(context, .03),
+        ),
+        isScrollable: true,
+        labelColor: myBlack,
+        unselectedLabelColor: myBlack.withOpacity(.5),
+        indicatorColor: myBlack,
+        indicatorSize: TabBarIndicatorSize.label,
+        tabs: const [
+          Tab(
+            child: Text('Recommended'),
           ),
-          indicatorPadding: EdgeInsets.symmetric(
-            horizontal: dynamicWidth(context, .03),
+          Tab(
+            child: Text('Popular'),
           ),
-          isScrollable: true,
-          labelColor: myBlack,
-          unselectedLabelColor: myBlack.withOpacity(.5),
-          indicatorColor: myBlack,
-          indicatorSize: TabBarIndicatorSize.label,
-          tabs: const [
-            Tab(
-              child: Text('Recommended'),
-            ),
-            Tab(
-              child: Text('Popular'),
-            ),
-            Tab(
-              child: Text('New Destination'),
-            ),
-            Tab(
-              child: Text('Hidden Gems'),
-            )
-          ]),
+          Tab(
+            child: Text('New Destination'),
+          ),
+          Tab(
+            child: Text('Hidden Gems'),
+          )
+        ],
+      ),
     ),
   );
 }
 
-smoothIndicatorCustomView(tabsArray, _pageController) {
+smoothIndicatorCustomView(context, tabsArray, _pageController) {
   return Padding(
-    padding: const EdgeInsets.only(left: 28.8, top: 28.8),
+    padding: EdgeInsets.symmetric(
+      vertical: dynamicHeight(context, .014),
+      horizontal: dynamicWidth(context, .08),
+    ),
     child: SmoothPageIndicator(
       controller: _pageController,
       count: tabsArray.length,
-      effect: const ExpandingDotsEffect(
-          activeDotColor: Color(0xFF8a8a8a),
-          dotColor: Color(0xFFababab),
-          dotHeight: 4.8,
-          dotWidth: 6,
-          spacing: 4.8),
+      effect: ExpandingDotsEffect(
+        activeDotColor: myBlack,
+        dotColor: myBlack.withOpacity(.4),
+        dotHeight: dynamicHeight(context, .008),
+        dotWidth: dynamicWidth(context, .02),
+        spacing: dynamicWidth(context, .016),
+      ),
     ),
   );
 }
 
-rowText() {
+rowText(context) {
   return Padding(
-    padding: const EdgeInsets.only(top: 48, left: 28.8, right: 28.8),
+    padding: EdgeInsets.only(
+      top: dynamicHeight(context, .04),
+      left: dynamicWidth(context, .06),
+      right: dynamicWidth(context, .06),
+    ),
     child: Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       crossAxisAlignment: CrossAxisAlignment.center,
-      children: const <Widget>[
+      children: <Widget>[
         Text(
           'Popular Places',
           style: TextStyle(
             fontWeight: FontWeight.bold,
-            fontSize: 20,
+            fontSize: dynamicWidth(context, .05),
           ),
         ),
-        Text(
-          'Show All ',
+        const Text(
+          'Show All',
         ),
       ],
     ),
@@ -161,8 +170,10 @@ rowText() {
 
 upperCards(context, _pageController) {
   return Container(
-    height: dynamicHeight(context, 0.25),
-    margin: const EdgeInsets.only(top: 16),
+    height: dynamicHeight(context, 0.2),
+    margin: EdgeInsets.only(
+      top: dynamicHeight(context, .01),
+    ),
     child: PageView(
       physics: const BouncingScrollPhysics(),
       controller: _pageController,
@@ -171,15 +182,25 @@ upperCards(context, _pageController) {
         tabImages.length,
         (int index) => GestureDetector(
           onTap: () {
-            push(context, SelectedDetailPage());
+            push(
+              context,
+              SelectedDetailPage(),
+            );
           },
           child: Container(
-            margin: const EdgeInsets.only(right: 28.8),
+            margin: EdgeInsets.only(
+              right: dynamicWidth(context, .04),
+            ),
             decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(9.6),
+              borderRadius: BorderRadius.circular(
+                dynamicWidth(context, .024),
+              ),
               image: DecorationImage(
                 fit: BoxFit.cover,
-                image: CachedNetworkImageProvider(tabImages[index], scale: 1),
+                image: CachedNetworkImageProvider(
+                  tabImages[index],
+                  scale: 1,
+                ),
               ),
             ),
           ),
@@ -189,22 +210,30 @@ upperCards(context, _pageController) {
   );
 }
 
-lowerCards(tabImages) {
+lowerCards(context, tabImages) {
   return Container(
-    margin: const EdgeInsets.only(top: 28.8, bottom: 16.8),
-    height: 124.8,
+    margin: EdgeInsets.symmetric(
+      vertical: dynamicHeight(context, .026),
+    ),
+    height: dynamicHeight(context, .16),
     child: ListView.builder(
       itemCount: tabImages.length,
-      padding: const EdgeInsets.only(left: 28.8, right: 12),
+      padding: EdgeInsets.symmetric(
+        horizontal: dynamicWidth(context, .06),
+      ),
       scrollDirection: Axis.horizontal,
       physics: const BouncingScrollPhysics(),
       itemBuilder: (context, index) {
         return Container(
-          height: 124.8,
-          width: 188.4,
-          margin: const EdgeInsets.only(right: 16.8),
+          height: dynamicHeight(context, .16),
+          width: dynamicWidth(context, .54),
+          margin: EdgeInsets.only(
+            right: dynamicWidth(context, .04),
+          ),
           decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(9.6),
+            borderRadius: BorderRadius.circular(
+              dynamicWidth(context, .03),
+            ),
             image: DecorationImage(
               fit: BoxFit.cover,
               image: CachedNetworkImageProvider(tabImages[index]),
@@ -216,15 +245,22 @@ lowerCards(tabImages) {
   );
 }
 
-upperIcons(icons) {
+upperIcons(context, icons) {
   return Container(
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(10),
-        color: Colors.white,
+    height: dynamicHeight(context, .054),
+    width: dynamicHeight(context, .054),
+    decoration: BoxDecoration(
+      borderRadius: BorderRadius.circular(
+        dynamicWidth(context, .02),
       ),
-      height: 50,
-      width: 50,
-      child: Icon(icons));
+      color: myWhite,
+    ),
+    child: Center(
+      child: Icon(
+        icons,
+      ),
+    ),
+  );
 }
 
 imagesSlider(context, List array) {
@@ -247,7 +283,9 @@ imagesSlider(context, List array) {
       return Builder(
         builder: (BuildContext context) {
           return ClipRRect(
-            borderRadius: BorderRadius.circular(15),
+            borderRadius: BorderRadius.circular(
+              dynamicWidth(context, .03),
+            ),
             child: CachedNetworkImage(
               imageUrl: i.toString(),
               width: MediaQuery.of(context).size.width,
