@@ -40,8 +40,8 @@ class Settings extends StatelessWidget {
                 child: Center(
                   child: SafeArea(
                     child: Container(
-                      width: dynamicWidth(context, .38),
-                      height: dynamicHeight(context, .18),
+                      width: dynamicWidth(context, .34),
+                      height: dynamicHeight(context, .16),
                       decoration: BoxDecoration(
                         color: myWhite,
                         shape: BoxShape.circle,
@@ -116,7 +116,7 @@ Widget tiles(context, icon, text) {
         border: Border(
           bottom: BorderSide(
             color: Colors.black,
-            width: 2.0,
+            width: 1.0,
           ),
         ),
       ),
@@ -126,20 +126,20 @@ Widget tiles(context, icon, text) {
         ),
         leading: Icon(
           icon,
-          size: dynamicHeight(context, .04),
+          size: dynamicHeight(context, .038),
           color: myBlack,
         ),
         title: Text(
           text,
           style: TextStyle(
-            fontSize: dynamicWidth(context, .052),
+            fontSize: dynamicWidth(context, .05),
             color: myBlack,
             fontWeight: FontWeight.w600,
           ),
         ),
         trailing: Icon(
           Icons.arrow_forward_ios_rounded,
-          size: dynamicHeight(context, .032),
+          size: dynamicHeight(context, .03),
           color: myBlack,
         ),
       ),
