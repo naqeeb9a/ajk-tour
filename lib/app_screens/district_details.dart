@@ -19,78 +19,37 @@ class DistrictDetail extends StatefulWidget {
 class _DistrictDetailState extends State<DistrictDetail> {
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Material(
-        child: Hero(
-          tag: widget.i,
-          child: Scaffold(
-            backgroundColor: myGrey,
-            body: Column(
-              children: [
-                SizedBox(
+    return Material(
+      child: Hero(
+        tag: widget.i,
+        child: Scaffold(
+          backgroundColor: myGrey,
+          body: Column(
+            children: [
+              imageHeader(
+                context,
+                widget.image.toString(),
+                widget.stateName,
+                true,
+              ),
+              Flexible(
+                child: SizedBox(
                   width: dynamicWidth(context, 1),
-                  height: dynamicHeight(context, .24),
-                  child: Stack(
-                    children: [
-                      SizedBox(
-                        width: dynamicWidth(context, 1),
-                        height: dynamicHeight(context, .24),
-                        child: Image.network(
-                          widget.image.toString(),
-                          fit: BoxFit.cover,
-                        ),
-                      ),
-                      Container(
-                        width: dynamicWidth(context, 1),
-                        height: dynamicHeight(context, .24),
-                        color: myBlack.withOpacity(.4),
-                      ),
-                      SizedBox(
-                        width: dynamicWidth(context, 1),
-                        height: dynamicHeight(context, .22),
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            customBar("", color: myWhite),
-                            Padding(
-                              padding: EdgeInsets.only(
-                                bottom: dynamicHeight(context, .02),
-                              ),
-                              child: Text(
-                                widget.stateName,
-                                style: TextStyle(
-                                  color: myWhite,
-                                  fontWeight: FontWeight.w600,
-                                  fontSize: dynamicWidth(context, .08),
-                                ),
-                                maxLines: 1,
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-                Flexible(
-                  child: SizedBox(
-                    width: dynamicWidth(context, 1),
-                    child: Padding(
-                      padding: EdgeInsets.symmetric(
-                        vertical: dynamicHeight(context, .024),
-                      ),
-                      child: ListView.builder(
-                        itemCount: 4,
-                        itemBuilder: (context, i) {
-                          return stateDetailCard(
-                              context, "assets/1.jpg", "place abc", "Mirpur");
-                        },
-                      ),
+                  child: Padding(
+                    padding: EdgeInsets.symmetric(
+                      vertical: dynamicHeight(context, .024),
+                    ),
+                    child: ListView.builder(
+                      itemCount: 4,
+                      itemBuilder: (context, i) {
+                        return stateDetailCard(
+                            context, "assets/1.jpg", "place abc", "Mirpur");
+                      },
                     ),
                   ),
                 ),
-              ],
-            ),
+              ),
+            ],
           ),
         ),
       ),
