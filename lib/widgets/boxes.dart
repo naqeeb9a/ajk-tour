@@ -1,5 +1,5 @@
-import 'package:ajk_tour/app_screens/place_detail.dart';
 import 'package:ajk_tour/app_screens/district_details.dart';
+import 'package:ajk_tour/app_screens/place_detail.dart';
 import 'package:ajk_tour/utils/app_routes.dart';
 import 'package:ajk_tour/utils/config.dart';
 import 'package:ajk_tour/widgets/dynamic_sizes.dart';
@@ -166,6 +166,53 @@ Widget stateDetailCard(context, image, placeName, state) {
           ),
         ),
       ),
+    ),
+  );
+}
+
+Widget toDoCards(context, bgColor, icon, text) {
+  return Container(
+    width: dynamicWidth(context, .4),
+    height: dynamicHeight(context, .136),
+    decoration: BoxDecoration(
+      color: bgColor,
+      borderRadius: BorderRadius.circular(
+        dynamicWidth(context, .03),
+      ),
+    ),
+    padding: EdgeInsets.all(
+      dynamicWidth(context, .03),
+    ),
+    child: Column(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: [
+        Row(
+          children: [
+            CircleAvatar(
+              radius: dynamicHeight(context, .024),
+              backgroundColor: myWhite,
+              child: Icon(
+                icon,
+                color: myBlack,
+              ),
+            ),
+          ],
+        ),
+        Row(
+          children: [
+            Flexible(
+              child: Text(
+                text,
+                style: TextStyle(
+                  color: myWhite,
+                  fontSize: dynamicWidth(context, .042),
+                ),
+                maxLines: 2,
+              ),
+            )
+          ],
+        ),
+      ],
     ),
   );
 }
