@@ -1,6 +1,6 @@
 import 'package:ajk_tour/app_screens/home_page.dart';
 import 'package:ajk_tour/app_screens/settings.dart';
-import 'package:ajk_tour/app_screens/states.dart';
+import 'package:ajk_tour/app_screens/districts.dart';
 import 'package:ajk_tour/utils/config.dart';
 import 'package:flutter/material.dart';
 import 'package:salomon_bottom_bar/salomon_bottom_bar.dart';
@@ -33,7 +33,7 @@ class _BottomNavState extends State<BottomNav> {
           ),
           SalomonBottomBarItem(
             icon: const Icon(Icons.grid_view),
-            title: const Text("States"),
+            title: const Text("Districts"),
             selectedColor: myBlack,
           ),
           SalomonBottomBarItem(
@@ -51,7 +51,7 @@ class _BottomNavState extends State<BottomNav> {
       case 0:
         return const HomePage();
       case 1:
-        return const States();
+        return const Districts();
       case 2:
         return const Settings();
       default:

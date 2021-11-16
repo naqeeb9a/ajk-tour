@@ -3,14 +3,14 @@ import 'package:ajk_tour/widgets/boxes.dart';
 import 'package:ajk_tour/widgets/essential_widgets.dart';
 import 'package:flutter/material.dart';
 
-class States extends StatefulWidget {
-  const States({Key? key}) : super(key: key);
+class Districts extends StatefulWidget {
+  const Districts({Key? key}) : super(key: key);
 
   @override
-  _StatesState createState() => _StatesState();
+  _DistrictsState createState() => _DistrictsState();
 }
 
-class _StatesState extends State<States> {
+class _DistrictsState extends State<Districts> {
   var arrayLocal = [
     {
       "image":
@@ -37,7 +37,7 @@ class _StatesState extends State<States> {
     return SafeArea(
       child: Scaffold(
         backgroundColor: myGrey,
-        appBar: customBar("States"),
+        appBar: customBar("Districts"),
         body: ListView.builder(
           itemCount: arrayLocal.length,
           itemBuilder: (context, i) {

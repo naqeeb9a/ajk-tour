@@ -1,5 +1,5 @@
 import 'package:ajk_tour/app_screens/place_detail.dart';
-import 'package:ajk_tour/app_screens/state_details.dart';
+import 'package:ajk_tour/app_screens/district_details.dart';
 import 'package:ajk_tour/utils/app_routes.dart';
 import 'package:ajk_tour/utils/config.dart';
 import 'package:ajk_tour/widgets/dynamic_sizes.dart';
@@ -16,7 +16,7 @@ Widget stateCard(context, image, dynamic text, i) {
       onTap: () {
         push(
           context,
-          StateDetail(
+          DistrictDetail(
             stateName: text,
             image: image,
             i: i,
