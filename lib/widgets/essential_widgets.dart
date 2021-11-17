@@ -64,12 +64,12 @@ Widget sliderContainer(context, String image) {
 Widget imageHeader(context, image, text, appBar, {height}) {
   return SizedBox(
     width: dynamicWidth(context, 1),
-    height: (height == "") ? dynamicHeight(context, .24) : height,
+    height: height == "" ? dynamicHeight(context, .24) : height,
     child: Stack(
       children: [
         SizedBox(
           width: dynamicWidth(context, 1),
-          height: dynamicHeight(context, .24),
+          height: height == "" ? dynamicHeight(context, .24) : height,
           child: Image.network(
             image,
             fit: BoxFit.cover,
@@ -77,12 +77,12 @@ Widget imageHeader(context, image, text, appBar, {height}) {
         ),
         Container(
           width: dynamicWidth(context, 1),
-          height: dynamicHeight(context, .24),
+          height: height == "" ? dynamicHeight(context, .24) : height,
           color: myBlack.withOpacity(.5),
         ),
         SizedBox(
           width: dynamicWidth(context, 1),
-          height: dynamicHeight(context, .22),
+          height: height == "" ? dynamicHeight(context, .24) : height,
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [

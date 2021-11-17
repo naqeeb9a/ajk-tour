@@ -74,12 +74,15 @@ class _DistrictsState extends State<Districts> {
               ).toList(),
             ),
           ),
-          imageHeader(
-            context,
-            "https://www.visitswatvalley.com/images/naran-kaghan.jpg",
-            "DISTRICTS",
-            false,
-            height: dynamicHeight(context, .3),
+          ColoredBox(
+            color: primaryGreen,
+            child: imageHeader(
+              context,
+              "https://www.visitswatvalley.com/images/naran-kaghan.jpg",
+              "DISTRICTS",
+              false,
+              height: dynamicHeight(context, .28),
+            ),
           ),
         ],
       ),
