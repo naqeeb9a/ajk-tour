@@ -61,7 +61,7 @@ Widget sliderContainer(context, String image) {
   );
 }
 
-Widget imageHeader(context, image, text, appBar, {height}) {
+Widget imageHeader(context, image, text, appBar, {height, assetImage}) {
   return SizedBox(
     width: dynamicWidth(context, 1),
     height: height == "" ? dynamicHeight(context, .24) : height,
@@ -70,10 +70,15 @@ Widget imageHeader(context, image, text, appBar, {height}) {
         SizedBox(
           width: dynamicWidth(context, 1),
           height: height == "" ? dynamicHeight(context, .24) : height,
-          child: Image.network(
-            image,
-            fit: BoxFit.cover,
-          ),
+          child: assetImage == false
+              ? Image.network(
+                  image,
+                  fit: BoxFit.cover,
+                )
+              : Image.asset(
+                  image,
+                  fit: BoxFit.cover,
+                ),
         ),
         Container(
           width: dynamicWidth(context, 1),

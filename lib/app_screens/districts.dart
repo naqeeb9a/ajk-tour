@@ -75,10 +75,11 @@ class _DistrictsState extends State<Districts> {
           ),
           imageHeader(
             context,
-            "https://www.visitswatvalley.com/images/naran-kaghan.jpg",
+            "assets/districts.jpg",
             "DISTRICTS",
             false,
             height: dynamicHeight(context, .28),
+            assetImage: true,
           ),
         ],
       ),
