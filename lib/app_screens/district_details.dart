@@ -40,6 +40,7 @@ class _DistrictDetailState extends State<DistrictDetail> {
                       vertical: dynamicHeight(context, .024),
                     ),
                     child: ListView.builder(
+                      physics: const BouncingScrollPhysics(),
                       itemCount: 4,
                       itemBuilder: (context, i) {
                         return stateDetailCard(
