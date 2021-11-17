@@ -3,7 +3,7 @@ import 'package:ajk_tour/widgets/boxes.dart';
 import 'package:ajk_tour/widgets/dynamic_sizes.dart';
 import 'package:flutter/material.dart';
 
-import 'district_details.dart';
+import 'city_details.dart';
 
 class Cities extends StatefulWidget {
   final String cityName, image;
@@ -91,7 +91,7 @@ class _CitiesState extends State<Cities> {
                     context,
                     arrayLocal[i]["image"],
                     arrayLocal[i]["name"],
-                    DistrictDetail(
+                    CityDetail(
                       stateName: arrayLocal[i]["name"].toString(),
                       image: arrayLocal[i]["image"].toString(),
                       i: i,

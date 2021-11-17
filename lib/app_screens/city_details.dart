@@ -4,19 +4,19 @@ import 'package:ajk_tour/widgets/dynamic_sizes.dart';
 import 'package:ajk_tour/widgets/essential_widgets.dart';
 import 'package:flutter/material.dart';
 
-class DistrictDetail extends StatefulWidget {
+class CityDetail extends StatefulWidget {
   final String stateName, image;
   final int i;
 
-  const DistrictDetail(
+  const CityDetail(
       {Key? key, required this.stateName, required this.image, required this.i})
       : super(key: key);
 
   @override
-  _DistrictDetailState createState() => _DistrictDetailState();
+  _CityDetailState createState() => _CityDetailState();
 }
 
-class _DistrictDetailState extends State<DistrictDetail> {
+class _CityDetailState extends State<CityDetail> {
   @override
   Widget build(BuildContext context) {
     return Material(
