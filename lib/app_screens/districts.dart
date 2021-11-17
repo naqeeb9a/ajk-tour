@@ -55,10 +55,20 @@ class _DistrictsState extends State<Districts> {
                     ).toList(),
                   ),
                 );
+              } else {
+                return ListWheelScrollView(
+                  diameterRatio: 5,
+                  itemExtent: dynamicHeight(context, .25),
+                  physics: const NeverScrollableScrollPhysics(),
+                  onSelectedItemChanged: (i) {
+                    selectedItem = i;
+                  },
+                  children: List.generate(
+                    3,
+                    (i) => stateCard(context, "no", "no", check: true),
+                  ).toList(),
+                );
               }
-              return const LinearProgressIndicator(
-                color: myBlack,
-              );
             },
           ),
           ColoredBox(
