@@ -6,6 +6,7 @@ import 'package:ajk_tour/widgets/boxes.dart';
 import 'package:ajk_tour/widgets/dynamic_sizes.dart';
 import 'package:ajk_tour/widgets/essential_widgets.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 class Districts extends StatefulWidget {
   const Districts({Key? key}) : super(key: key);
@@ -19,12 +20,13 @@ class _DistrictsState extends State<Districts> {
 
   @override
   Widget build(BuildContext context) {
+    SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle.light);
     return Scaffold(
       backgroundColor: myGrey,
       body: Stack(
         children: [
           FutureBuilder(
-            future: ApiData().getDistrictList(),
+            future: ApiData().getInfo("districts"),
             builder: (BuildContext context, AsyncSnapshot snapshot) {
               if (snapshot.hasData) {
                 return GestureDetector(
@@ -71,15 +73,12 @@ class _DistrictsState extends State<Districts> {
               }
             },
           ),
-          ColoredBox(
-            color: primaryGreen,
-            child: imageHeader(
-              context,
-              "https://www.visitswatvalley.com/images/naran-kaghan.jpg",
-              "DISTRICTS",
-              false,
-              height: dynamicHeight(context, .28),
-            ),
+          imageHeader(
+            context,
+            "https://www.visitswatvalley.com/images/naran-kaghan.jpg",
+            "DISTRICTS",
+            false,
+            height: dynamicHeight(context, .28),
           ),
         ],
       ),
