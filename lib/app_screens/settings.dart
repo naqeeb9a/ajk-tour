@@ -1,7 +1,6 @@
 import 'package:ajk_tour/utils/config.dart';
 import 'package:ajk_tour/widgets/dynamic_sizes.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 
 class Settings extends StatefulWidget {
   const Settings({Key? key}) : super(key: key);
@@ -15,8 +14,6 @@ bool profileHeight = false;
 class _SettingsState extends State<Settings> {
   @override
   Widget build(BuildContext context) {
-    SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle.light);
-
     return Scaffold(
       backgroundColor: myGrey,
       body: SingleChildScrollView(

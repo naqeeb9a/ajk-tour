@@ -6,7 +6,6 @@ import 'package:ajk_tour/widgets/boxes.dart';
 import 'package:ajk_tour/widgets/dynamic_sizes.dart';
 import 'package:ajk_tour/widgets/essential_widgets.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 
 class Districts extends StatefulWidget {
   const Districts({Key? key}) : super(key: key);
@@ -20,7 +19,6 @@ class _DistrictsState extends State<Districts> {
 
   @override
   Widget build(BuildContext context) {
-    SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle.light);
     return Scaffold(
       backgroundColor: myGrey,
       body: Stack(
