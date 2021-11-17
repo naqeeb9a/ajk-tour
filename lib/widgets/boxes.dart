@@ -7,7 +7,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:shimmer/shimmer.dart';
 
-Widget stateCard(context, image, dynamic text, {page, check = false}) {
+Widget stateCard(context, {image, dynamic text, page, check = false}) {
   return Padding(
     padding: EdgeInsets.symmetric(
       vertical: dynamicHeight(context, .012),

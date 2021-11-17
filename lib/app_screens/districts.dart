@@ -51,8 +51,8 @@ class _DistrictsState extends State<Districts> {
                       snapshot.data!.length,
                       (i) => stateCard(
                         context,
-                        snapshot.data[i]["image"],
-                        snapshot.data[i]["name"],
+                        image: snapshot.data[i]["image"],
+                        text: snapshot.data[i]["name"],
                       ),
                     ).toList(),
                   ),
@@ -67,7 +67,7 @@ class _DistrictsState extends State<Districts> {
                   },
                   children: List.generate(
                     3,
-                    (i) => stateCard(context, "no", "no", check: true),
+                    (i) => stateCard(context, check: true),
                   ).toList(),
                 );
               }

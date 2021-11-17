@@ -103,8 +103,8 @@ class _CitiesState extends State<Cities> {
                   color: noColor,
                   child: stateCard(
                     context,
-                    arrayLocal[i]["image"],
-                    arrayLocal[i]["name"],
+                    image: arrayLocal[i]["image"],
+                    text: arrayLocal[i]["name"],
                     page: CityDetail(
                       stateName: arrayLocal[i]["name"].toString(),
                       image: arrayLocal[i]["image"].toString(),
