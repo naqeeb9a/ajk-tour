@@ -6,7 +6,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-Widget stateCard(context, image, dynamic text, page) {
+Widget stateCard(context, image, dynamic text, {page}) {
   return Padding(
     padding: EdgeInsets.symmetric(
       vertical: dynamicHeight(context, .012),

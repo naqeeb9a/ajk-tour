@@ -66,9 +66,23 @@ class _CitiesState extends State<Cities> {
                         fontSize: dynamicWidth(context, .06),
                       ),
                     ),
-                    background: Image.network(
-                      widget.image.toString(),
-                      fit: BoxFit.cover,
+                    background: Stack(
+                      children: [
+                        Container(
+                          width: dynamicWidth(context, 1),
+                          height: dynamicHeight(context, 1),
+                          color: myBlack.withOpacity(.6),
+                          child: Image.network(
+                            widget.image.toString(),
+                            fit: BoxFit.cover,
+                          ),
+                        ),
+                        Container(
+                          width: dynamicWidth(context, 1),
+                          height: dynamicHeight(context, 1),
+                          color: myBlack.withOpacity(.5),
+                        ),
+                      ],
                     ),
                   );
                 },
@@ -91,7 +105,7 @@ class _CitiesState extends State<Cities> {
                     context,
                     arrayLocal[i]["image"],
                     arrayLocal[i]["name"],
-                    CityDetail(
+                    page: CityDetail(
                       stateName: arrayLocal[i]["name"].toString(),
                       image: arrayLocal[i]["image"].toString(),
                       i: i,

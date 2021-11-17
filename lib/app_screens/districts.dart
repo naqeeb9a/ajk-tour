@@ -1,3 +1,4 @@
+import 'package:ajk_tour/api/apis.dart';
 import 'package:ajk_tour/app_screens/cities.dart';
 import 'package:ajk_tour/utils/app_routes.dart';
 import 'package:ajk_tour/utils/config.dart';
@@ -15,27 +16,6 @@ class Districts extends StatefulWidget {
 
 class _DistrictsState extends State<Districts> {
   int selectedItem = 0;
-  var arrayLocal = [
-    {
-      "image":
-          "https://www.pakistantravelguide.pk/wp-content/uploads/2016/11/boating-at-mangla-dam.png",
-      "name": "Mirpur"
-    },
-    {
-      "image":
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/7/72/Balakot_KunharRiver.jpg/440px-Balakot_KunharRiver.jpg",
-      "name": "Balakot"
-    },
-    {
-      "image": "https://www.visitswatvalley.com/images/naran-kaghan.jpg",
-      "name": "Naran"
-    },
-    {
-      "image":
-          "https://www.visitpk.com/wp-content/uploads/2018/03/paragliding-in-mountains-720x480.jpg",
-      "name": "Toli peer"
-    }
-  ];
 
   @override
   Widget build(BuildContext context) {
@@ -43,36 +23,43 @@ class _DistrictsState extends State<Districts> {
       backgroundColor: myGrey,
       body: Stack(
         children: [
-          GestureDetector(
-            onTap: () {
-              push(
-                context,
-                Cities(
-                  cityName: arrayLocal[selectedItem]["name"].toString(),
-                  image: arrayLocal[selectedItem]["image"].toString(),
-                ),
+          FutureBuilder(
+            future: ApiData().getDistrictList(),
+            builder: (BuildContext context, AsyncSnapshot snapshot) {
+              if (snapshot.hasData) {
+                return GestureDetector(
+                  onTap: () {
+                    push(
+                      context,
+                      Cities(
+                        cityName:
+                            snapshot.data[selectedItem]["name"].toString(),
+                        image: snapshot.data[selectedItem]["image"].toString(),
+                      ),
+                    );
+                  },
+                  child: ListWheelScrollView(
+                    diameterRatio: 5,
+                    itemExtent: dynamicHeight(context, .25),
+                    physics: const BouncingScrollPhysics(),
+                    onSelectedItemChanged: (i) {
+                      selectedItem = i;
+                    },
+                    children: List.generate(
+                      snapshot.data!.length,
+                      (i) => stateCard(
+                        context,
+                        snapshot.data[i]["image"],
+                        snapshot.data[i]["name"],
+                      ),
+                    ).toList(),
+                  ),
+                );
+              }
+              return const LinearProgressIndicator(
+                color: myBlack,
               );
             },
-            child: ListWheelScrollView(
-              diameterRatio: 5,
-              itemExtent: dynamicHeight(context, .25),
-              physics: const BouncingScrollPhysics(),
-              onSelectedItemChanged: (i) {
-                selectedItem = i;
-              },
-              children: List.generate(
-                arrayLocal.length,
-                (i) => stateCard(
-                  context,
-                  arrayLocal[i]["image"],
-                  arrayLocal[i]["name"],
-                  Cities(
-                    cityName: arrayLocal[i]["name"].toString(),
-                    image: arrayLocal[i]["image"].toString(),
-                  ),
-                ),
-              ).toList(),
-            ),
           ),
           ColoredBox(
             color: primaryGreen,
