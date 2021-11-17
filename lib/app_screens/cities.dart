@@ -52,7 +52,7 @@ class _CitiesState extends State<Cities> {
               floating: false,
               pinned: true,
               iconTheme: IconThemeData(
-                color: top == 88 ? myBlack : myWhite,
+                color: top <= 88 ? myBlack : myWhite,
               ),
               flexibleSpace: LayoutBuilder(
                 builder: (BuildContext context, BoxConstraints constraints) {
@@ -62,10 +62,11 @@ class _CitiesState extends State<Cities> {
                     title: Text(
                       widget.cityName.toUpperCase(),
                       style: TextStyle(
-                        color: top == 88 ? myBlack : myWhite,
+                        color: top <= 88 ? myBlack : myWhite,
                         fontSize: dynamicWidth(context, .06),
                       ),
                     ),
+                    collapseMode: CollapseMode.pin,
                     background: Stack(
                       children: [
                         Container(
