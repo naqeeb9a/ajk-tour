@@ -1,4 +1,5 @@
 import 'package:ajk_tour/app_screens/cities.dart';
+import 'package:ajk_tour/utils/app_routes.dart';
 import 'package:ajk_tour/utils/config.dart';
 import 'package:ajk_tour/widgets/boxes.dart';
 import 'package:ajk_tour/widgets/dynamic_sizes.dart';
@@ -12,6 +13,7 @@ class Districts extends StatefulWidget {
 }
 
 class _DistrictsState extends State<Districts> {
+  int selectedItem = 0;
   var arrayLocal = [
     {
       "image":
@@ -69,30 +71,34 @@ class _DistrictsState extends State<Districts> {
             ),
           ];
         },
-        body: Padding(
-          padding: EdgeInsets.symmetric(
-            vertical: dynamicHeight(context, .02),
-          ),
-          child: ListView.builder(
-            itemCount: arrayLocal.length,
-            itemBuilder: (context, i) {
-              return Hero(
-                tag: i,
-                child: Material(
-                  color: noColor,
-                  child: stateCard(
-                    context,
-                    arrayLocal[i]["image"],
-                    arrayLocal[i]["name"],
-                    Cities(
-                      cityName: arrayLocal[i]["name"].toString(),
-                      image: arrayLocal[i]["image"].toString(),
-                    ),
-
-                  ),
-                ),
-              );
+        body: GestureDetector(
+          onTap: () {
+            push(
+                context,
+                Cities(
+                  cityName: arrayLocal[selectedItem]["name"].toString(),
+                  image: arrayLocal[selectedItem]["image"].toString(),
+                ));
+          },
+          child: ListWheelScrollView(
+            diameterRatio: 5,
+            itemExtent: dynamicHeight(context, .25),
+            onSelectedItemChanged: (i) {
+              print(i);
+              selectedItem = i;
             },
+            children: List.generate(
+              arrayLocal.length,
+              (i) => stateCard(
+                context,
+                arrayLocal[i]["image"],
+                arrayLocal[i]["name"],
+                Cities(
+                  cityName: arrayLocal[i]["name"].toString(),
+                  image: arrayLocal[i]["image"].toString(),
+                ),
+              ),
+            ).toList(),
           ),
         ),
       ),
