@@ -61,10 +61,10 @@ Widget sliderContainer(context, String image) {
   );
 }
 
-Widget imageHeader(context, image, text, appBar, {height = ""}) {
+Widget imageHeader(context, image, text, appBar, {height}) {
   return SizedBox(
     width: dynamicWidth(context, 1),
-    height: height == "" ? dynamicHeight(context, .24) : height,
+    height: (height == "") ? dynamicHeight(context, .24) : height,
     child: Stack(
       children: [
         SizedBox(

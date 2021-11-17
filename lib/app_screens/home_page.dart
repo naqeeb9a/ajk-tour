@@ -68,6 +68,7 @@ class _HomePageState extends State<HomePage> {
                   ),
                   InkWell(
                     onTap: () {
+
                       push(
                         context,
                         const SearchScreen(),
