@@ -94,7 +94,8 @@ Widget stateCard(context, {image, dynamic text, page, check = false}) {
   );
 }
 
-Widget stateDetailCard(context, image, placeName, state) {
+Widget stateDetailCard(
+    context, image, placeName, city, latitude, longitude, description) {
   return Padding(
     padding: EdgeInsets.symmetric(
       vertical: dynamicHeight(context, .012),
@@ -103,7 +104,14 @@ Widget stateDetailCard(context, image, placeName, state) {
       onTap: () {
         push(
           context,
-          const PlaceDetail(),
+          PlaceDetail(
+            name: placeName,
+            image: image,
+            city: city,
+            latitude: latitude,
+            longitude: longitude,
+            description: description,
+          ),
         );
       },
       child: Center(
@@ -135,7 +143,7 @@ Widget stateDetailCard(context, image, placeName, state) {
                     dynamicHeight(context, .012),
                   ),
                 ),
-                child: Image.asset(
+                child: Image.network(
                   image,
                   height: dynamicHeight(context, .18),
                   width: dynamicWidth(context, 1),
@@ -171,7 +179,7 @@ Widget stateDetailCard(context, image, placeName, state) {
                                 ),
                               ),
                               TextSpan(
-                                text: " $state",
+                                text: " $city",
                                 style: TextStyle(
                                   color: myBlack.withOpacity(.5),
                                   fontWeight: FontWeight.normal,

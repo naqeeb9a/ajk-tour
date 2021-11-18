@@ -6,7 +6,17 @@ import 'package:ajk_tour/widgets/essential_widgets.dart';
 import 'package:flutter/material.dart';
 
 class PlaceDetail extends StatefulWidget {
-  const PlaceDetail({Key? key}) : super(key: key);
+  final String name, city, latitude, longitude, description, image;
+
+  const PlaceDetail({
+    Key? key,
+    required this.image,
+    required this.name,
+    required this.city,
+    required this.latitude,
+    required this.longitude,
+    required this.description,
+  }) : super(key: key);
 
   @override
   _PlaceDetailState createState() => _PlaceDetailState();
@@ -30,7 +40,7 @@ class _PlaceDetailState extends State<PlaceDetail> {
                       dynamicHeight(context, .4),
                       3,
                       1.0,
-                      "assets/1.jpg",
+                      widget.image,
                     ),
                   ),
                 ],
@@ -92,7 +102,7 @@ class _PlaceDetailState extends State<PlaceDetail> {
                                   ),
                                 ),
                                 TextSpan(
-                                  text: " Mirpur",
+                                  text: " " + widget.city,
                                   style: TextStyle(
                                     color: myBlack.withOpacity(.5),
                                     fontWeight: FontWeight.normal,
@@ -113,7 +123,7 @@ class _PlaceDetailState extends State<PlaceDetail> {
                       mainAxisAlignment: MainAxisAlignment.start,
                       children: [
                         Text(
-                          "Abcdef ghijkl",
+                          widget.name,
                           style: TextStyle(
                             color: myBlack,
                             fontWeight: FontWeight.w600,
@@ -189,11 +199,7 @@ class _PlaceDetailState extends State<PlaceDetail> {
                         children: [
                           Flexible(
                             child: Text(
-                              "sshdfdfdfdsjf hjhjd hfjjfhs djf jdsh djhdjhj dfdshf dshfdshjf dfhdhf fhdsjhfds djfhjdshf hfjds "
-                              "sshdfdfdfdsjf hjhjd hfjjfhs djf jdsh djhdjhj dfdshf dshfdshjf dfhdhf fhdsjhfds djfhjdshf hfjds "
-                              "sshdfdfdfdsjf hjhjd hfjjfhs djf jdsh djhdjhj dfdshf dshfdshjf dfhdhf fhdsjhfds djfhjdshf hfjds "
-                              "sshdfdfdfdsjf hjhjd hfjjfhs djf jdsh djhdjhj dfdshf dshfdshjf dfhdhf fhdsjhfds djfhjdshf hfjds "
-                              "sshdfdfdfdsjf hjhjd hfjjfhs djf jdsh djhdjhj dfdshf dshfdshjf dfhdhf fhdsjhfds",
+                              widget.description,
                               style: TextStyle(
                                 fontSize: dynamicWidth(context, .046),
                                 color: myBlack,

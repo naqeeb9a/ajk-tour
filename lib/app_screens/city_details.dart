@@ -1,3 +1,4 @@
+import 'package:ajk_tour/api/apis.dart';
 import 'package:ajk_tour/utils/config.dart';
 import 'package:ajk_tour/widgets/boxes.dart';
 import 'package:ajk_tour/widgets/dynamic_sizes.dart';
@@ -6,10 +7,14 @@ import 'package:flutter/material.dart';
 
 class CityDetail extends StatefulWidget {
   final String stateName, image;
-  final int i;
+  final int i, index;
 
   const CityDetail(
-      {Key? key, required this.stateName, required this.image, required this.i})
+      {Key? key,
+      required this.stateName,
+      required this.image,
+      required this.i,
+      required this.index})
       : super(key: key);
 
   @override
@@ -31,6 +36,7 @@ class _CityDetailState extends State<CityDetail> {
                 widget.image.toString(),
                 widget.stateName,
                 true,
+                assetImage: false,
               ),
               Flexible(
                 child: SizedBox(
@@ -39,12 +45,30 @@ class _CityDetailState extends State<CityDetail> {
                     padding: EdgeInsets.symmetric(
                       vertical: dynamicHeight(context, .024),
                     ),
-                    child: ListView.builder(
-                      physics: const BouncingScrollPhysics(),
-                      itemCount: 4,
-                      itemBuilder: (context, i) {
-                        return stateDetailCard(
-                            context, "assets/1.jpg", "place abc", "Mirpur");
+                    child: FutureBuilder(
+                      future: ApiData()
+                          .getInfo("places/" + widget.index.toString()),
+                      builder: (BuildContext context, AsyncSnapshot snapshot) {
+                        if (snapshot.hasData) {
+                          return ListView.builder(
+                            physics: const BouncingScrollPhysics(),
+                            itemCount: snapshot.data.length,
+                            itemBuilder: (context, i) {
+                              return stateDetailCard(
+                                context,
+                                snapshot.data[i]["image"].toString(),
+                                snapshot.data[i]["name"].toString(),
+                                widget.stateName,
+                                "",
+                                "",
+                                "",
+                              );
+                            },
+                          );
+                        }
+                        return const Center(
+                          child: CircularProgressIndicator(),
+                        );
                       },
                     ),
                   ),

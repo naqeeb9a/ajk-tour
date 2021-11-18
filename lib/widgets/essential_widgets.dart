@@ -48,7 +48,7 @@ Widget homeSlider(
 Widget sliderContainer(context, String image) {
   return SizedBox(
     width: dynamicWidth(context, 1),
-    child: Image.asset(
+    child: Image.network(
       image,
       fit: BoxFit.fitHeight,
       // placeholder: (context, string) {
@@ -61,7 +61,7 @@ Widget sliderContainer(context, String image) {
   );
 }
 
-Widget imageHeader(context, image, text, appBar, {height, assetImage}) {
+Widget imageHeader(context, image, text, appBar, {height = "", assetImage}) {
   return SizedBox(
     width: dynamicWidth(context, 1),
     height: height == "" ? dynamicHeight(context, .24) : height,

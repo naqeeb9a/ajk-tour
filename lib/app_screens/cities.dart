@@ -98,6 +98,7 @@ class _CitiesState extends State<Cities> {
                           page: CityDetail(
                             stateName: snapshot.data[i]["name"].toString(),
                             image: snapshot.data[i]["image"].toString(),
+                            index: snapshot.data[i]["id"],
                             i: i,
                           ),
                         ),
@@ -106,7 +107,7 @@ class _CitiesState extends State<Cities> {
                   },
                 );
               }
-              return Center(
+              return const Center(
                 child: CircularProgressIndicator(),
               );
             },
