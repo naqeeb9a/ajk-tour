@@ -15,7 +15,7 @@ class Districts extends StatefulWidget {
 }
 
 class _DistrictsState extends State<Districts> {
-  int selectedItem = 0;
+  int selectedItem = 0, itemIndex = 0;
 
   @override
   Widget build(BuildContext context) {
@@ -35,6 +35,7 @@ class _DistrictsState extends State<Districts> {
                         cityName:
                             snapshot.data[selectedItem]["name"].toString(),
                         image: snapshot.data[selectedItem]["image"].toString(),
+                        index: itemIndex,
                       ),
                     );
                   },
@@ -43,7 +44,10 @@ class _DistrictsState extends State<Districts> {
                     itemExtent: dynamicHeight(context, .25),
                     physics: const BouncingScrollPhysics(),
                     onSelectedItemChanged: (i) {
-                      selectedItem = i;
+                      setState(() {
+                        selectedItem = i;
+                        itemIndex = snapshot.data[i]["id"];
+                      });
                     },
                     children: List.generate(
                       snapshot.data!.length,
