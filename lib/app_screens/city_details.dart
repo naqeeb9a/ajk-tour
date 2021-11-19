@@ -59,9 +59,9 @@ class _CityDetailState extends State<CityDetail> {
                                 snapshot.data[i]["image"].toString(),
                                 snapshot.data[i]["name"].toString(),
                                 widget.stateName,
-                                "",
-                                "",
-                                "",
+                                snapshot.data[i]["latitude"].toString(),
+                                snapshot.data[i]["longitude"].toString(),
+                                snapshot.data[i]["description"].toString(),
                               );
                             },
                           );

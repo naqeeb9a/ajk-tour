@@ -5,7 +5,6 @@ import 'package:ajk_tour/widgets/dynamic_sizes.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:shimmer/shimmer.dart';
 
 Widget stateCard(context, {image, dynamic text, page, check = false}) {
   return Padding(
@@ -20,75 +19,47 @@ Widget stateCard(context, {image, dynamic text, page, check = false}) {
         );
       },
       child: Center(
-        child: (check == true)
-            ? Shimmer.fromColors(
-                baseColor: Colors.grey,
-                highlightColor: Colors.grey[300]!,
-                child: ClipRRect(
-                  borderRadius: BorderRadius.circular(
-                    dynamicHeight(context, .015),
-                  ),
-                  child: Container(
-                    width: dynamicWidth(context, .9),
-                    height: dynamicHeight(context, .25),
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(
-                        dynamicHeight(context, .015),
-                      ),
-                      boxShadow: [
-                        BoxShadow(
-                          color: myBlack.withOpacity(0.4),
-                          spreadRadius: 2,
-                          blurRadius: 6,
-                          offset:
-                              const Offset(0, 3), // changes position of shadow
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
-              )
-            : Container(
-                width: dynamicWidth(context, .9),
-                height: dynamicHeight(context, .25),
-                decoration: BoxDecoration(
-                  color: myWhite,
-                  borderRadius: BorderRadius.circular(
-                    dynamicHeight(context, .015),
-                  ),
-                  image: DecorationImage(
-                    image: CachedNetworkImageProvider(
-                      image,
-                    ),
-                    fit: BoxFit.cover,
-                  ),
-                  boxShadow: [
-                    BoxShadow(
-                      color: myBlack.withOpacity(0.4),
-                      spreadRadius: 2,
-                      blurRadius: 6,
-                      offset: const Offset(0, 3), // changes position of shadow
-                    ),
-                  ],
-                ),
-                child: Material(
-                  borderRadius: BorderRadius.circular(
-                    dynamicHeight(context, .015),
-                  ),
-                  color: myBlack.withOpacity(.4),
-                  child: Center(
-                    child: Text(
-                      text,
-                      style: TextStyle(
-                        color: myWhite,
-                        fontWeight: FontWeight.w600,
-                        fontSize: dynamicWidth(context, .06),
-                      ),
-                      maxLines: 1,
-                    ),
-                  ),
-                ),
+        child: Container(
+          width: dynamicWidth(context, .9),
+          height: dynamicHeight(context, .25),
+          decoration: BoxDecoration(
+            color: myWhite,
+            borderRadius: BorderRadius.circular(
+              dynamicHeight(context, .015),
+            ),
+            image: DecorationImage(
+              image: CachedNetworkImageProvider(
+                image,
               ),
+              fit: BoxFit.cover,
+            ),
+            boxShadow: [
+              BoxShadow(
+                color: myBlack.withOpacity(0.4),
+                spreadRadius: 2,
+                blurRadius: 6,
+                offset: const Offset(0, 3), // changes position of shadow
+              ),
+            ],
+          ),
+          child: Material(
+            borderRadius: BorderRadius.circular(
+              dynamicHeight(context, .015),
+            ),
+            color: myBlack.withOpacity(.4),
+            child: Center(
+              child: Text(
+                text,
+                style: TextStyle(
+                  color: myWhite,
+                  fontWeight: FontWeight.w600,
+                  fontSize: dynamicWidth(context, .06),
+                ),
+                maxLines: 1,
+              ),
+            ),
+          ),
+        ),
       ),
     ),
   );
