@@ -1,5 +1,6 @@
 import 'package:ajk_tour/utils/config.dart';
 import 'package:ajk_tour/widgets/dynamic_sizes.dart';
+import 'package:ajk_tour/widgets/essential_widgets.dart';
 import 'package:flutter/material.dart';
 
 class SearchScreen extends StatefulWidget {
@@ -11,10 +12,12 @@ class SearchScreen extends StatefulWidget {
 
 class _SearchScreenState extends State<SearchScreen> {
   TextEditingController searchText = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: myGrey,
+      floatingActionButton: sosFloatingButton(),
       body: SafeArea(
         child: Center(
           child: SizedBox(

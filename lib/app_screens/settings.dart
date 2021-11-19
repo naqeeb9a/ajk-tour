@@ -1,5 +1,6 @@
 import 'package:ajk_tour/utils/config.dart';
 import 'package:ajk_tour/widgets/dynamic_sizes.dart';
+import 'package:ajk_tour/widgets/essential_widgets.dart';
 import 'package:flutter/material.dart';
 
 class Settings extends StatefulWidget {
@@ -16,6 +17,7 @@ class _SettingsState extends State<Settings> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: myGrey,
+      floatingActionButton: sosFloatingButton(),
       body: SingleChildScrollView(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,

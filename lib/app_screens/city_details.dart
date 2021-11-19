@@ -29,6 +29,7 @@ class _CityDetailState extends State<CityDetail> {
         tag: widget.i,
         child: Scaffold(
           backgroundColor: myGrey,
+          floatingActionButton: sosFloatingButton(),
           body: Column(
             children: [
               imageHeader(

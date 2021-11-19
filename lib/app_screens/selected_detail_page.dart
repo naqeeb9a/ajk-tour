@@ -1,6 +1,7 @@
 import 'package:ajk_tour/utils/app_routes.dart';
 import 'package:ajk_tour/utils/config.dart';
 import 'package:ajk_tour/widgets/dynamic_sizes.dart';
+import 'package:ajk_tour/widgets/essential_widgets.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
@@ -15,6 +16,8 @@ class SelectedDetailPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: myGrey,
+      floatingActionButton: sosFloatingButton(),
       body: Stack(
         children: [
           PageView(
@@ -117,22 +120,8 @@ class SelectedDetailPage extends StatelessWidget {
                     height: dynamicHeight(context, .05),
                   ),
                   Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    mainAxisAlignment: MainAxisAlignment.start,
                     children: <Widget>[
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: const <Widget>[
-                          FittedBox(
-                            child: Text(
-                              'Start from',
-                              style: TextStyle(
-                                color: myWhite,
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
                       Container(
                         width: dynamicWidth(context, .34),
                         height: dynamicHeight(context, .06),
@@ -149,7 +138,7 @@ class SelectedDetailPage extends StatelessWidget {
                         ),
                       )
                     ],
-                  )
+                  ),
                 ],
               ),
             ),

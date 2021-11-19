@@ -26,6 +26,8 @@ class _PlaceDetailState extends State<PlaceDetail> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: myGrey,
+      floatingActionButton: sosFloatingButton(),
       body: Column(
         children: [
           Stack(

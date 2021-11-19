@@ -18,6 +18,7 @@ class _DistrictsState extends State<Districts> {
   Widget build(BuildContext context) {
     return Scaffold(
         backgroundColor: myGrey,
+        floatingActionButton: sosFloatingButton(),
         body: Column(
           children: [
             imageHeader(
@@ -39,7 +40,6 @@ class _DistrictsState extends State<Districts> {
                   future: ApiData().getInfo("districts"),
                   builder: (BuildContext context, AsyncSnapshot snapshot) {
                     if (snapshot.hasData) {
-                      print(snapshot.data.length);
                       return ListView.builder(
                         itemCount: snapshot.data.length,
                         itemBuilder: (context, i) {

@@ -113,3 +113,15 @@ Widget imageHeader(context, image, text, appBar, {height = "", assetImage}) {
     ),
   );
 }
+
+Widget sosFloatingButton() {
+  return const FloatingActionButton.extended(
+    label: Text("SOS"),
+    onPressed: null,
+    backgroundColor: Colors.red,
+    isExtended: true,
+    icon: Icon(
+      Icons.add_alert,
+    ),
+  );
+}

@@ -3,6 +3,7 @@ import 'package:ajk_tour/app_screens/selected_detail_page.dart';
 import 'package:ajk_tour/utils/app_routes.dart';
 import 'package:ajk_tour/utils/config.dart';
 import 'package:ajk_tour/widgets/dynamic_sizes.dart';
+import 'package:ajk_tour/widgets/essential_widgets.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
@@ -22,6 +23,7 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: myGrey,
+      floatingActionButton: sosFloatingButton(),
       body: SingleChildScrollView(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -68,7 +70,6 @@ class _HomePageState extends State<HomePage> {
                   ),
                   InkWell(
                     onTap: () {
-
                       push(
                         context,
                         const SearchScreen(),
