@@ -36,7 +36,7 @@ class _PlaceDetailState extends State<PlaceDetail> {
                 children: [
                   SizedBox(
                     width: dynamicWidth(context, 1),
-                    height: dynamicHeight(context, .4),
+                    height: dynamicHeight(context, .34),
                     child: homeSlider(
                       context,
                       dynamicHeight(context, .4),
@@ -51,7 +51,7 @@ class _PlaceDetailState extends State<PlaceDetail> {
                 child: Padding(
                   padding: EdgeInsets.symmetric(
                     vertical: dynamicHeight(context, .01),
-                    horizontal: dynamicWidth(context, .04),
+                    horizontal: dynamicHeight(context, .34),
                   ),
                   child: InkWell(
                     onTap: () {
@@ -259,6 +259,9 @@ class _PlaceDetailState extends State<PlaceDetail> {
                           ),
                         ],
                       ),
+                    ),
+                    SizedBox(
+                      height: dynamicHeight(context, .08),
                     ),
                   ],
                 ),
