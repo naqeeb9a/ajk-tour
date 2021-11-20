@@ -82,14 +82,14 @@ Widget districtCard(context, {image, dynamic text, page, check = false}) {
   );
 }
 
-Widget cityCard(context, {image, dynamic text, cityName, page, check = false}) {
+Widget cityCard(context, {image, dynamic text, page, check = false}) {
   return Padding(
     padding: EdgeInsets.symmetric(
-      vertical: dynamicHeight(context, .012),
-      horizontal: dynamicWidth(context, .04),
+      vertical: dynamicHeight(context, .014),
+      horizontal: dynamicWidth(context, .05),
     ),
     child: Container(
-      width: dynamicWidth(context, .92),
+      width: dynamicWidth(context, .9),
       height: dynamicHeight(context, .24),
       decoration: BoxDecoration(
         color: myWhite,
@@ -118,7 +118,7 @@ Widget cityCard(context, {image, dynamic text, cityName, page, check = false}) {
             Positioned(
               bottom: 0.0,
               child: Container(
-                width: dynamicWidth(context, .92),
+                width: dynamicWidth(context, .9),
                 height: dynamicHeight(context, .08),
                 decoration: BoxDecoration(
                   color: myBlack.withOpacity(.6),
