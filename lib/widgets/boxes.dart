@@ -41,7 +41,7 @@ Widget districtCard(context, {image, dynamic text, page, check = false}) {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text(
-                    text,
+                    text.toString().toUpperCase(),
                     style: TextStyle(
                       color: myBlack,
                       fontWeight: FontWeight.w600,
@@ -135,7 +135,7 @@ Widget cityCard(context, {image, dynamic text, page, check = false}) {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Text(
-                        text,
+                        text.toString().toUpperCase(),
                         style: TextStyle(
                           color: myWhite,
                           fontWeight: FontWeight.w600,
