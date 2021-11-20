@@ -37,21 +37,15 @@ class _CitiesState extends State<Cities> {
             return ListView.builder(
               itemCount: snapshot.data.length,
               itemBuilder: (context, i) {
-                return Hero(
-                  tag: i,
-                  child: Material(
-                    color: noColor,
-                    child: cityCard(
-                      context,
-                      image: snapshot.data[i]["image"].toString(),
-                      text: snapshot.data[i]["name"].toString(),
-                      page: CityDetail(
-                        stateName: snapshot.data[i]["name"].toString(),
-                        image: snapshot.data[i]["image"].toString(),
-                        index: snapshot.data[i]["id"],
-                        i: i,
-                      ),
-                    ),
+                return cityCard(
+                  context,
+                  image: snapshot.data[i]["image"].toString(),
+                  text: snapshot.data[i]["name"].toString(),
+                  page: CityDetail(
+                    stateName: snapshot.data[i]["name"].toString(),
+                    image: snapshot.data[i]["image"].toString(),
+                    index: snapshot.data[i]["id"],
+                    i: i,
                   ),
                 );
               },

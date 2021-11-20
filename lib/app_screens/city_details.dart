@@ -24,11 +24,12 @@ class CityDetail extends StatefulWidget {
 class _CityDetailState extends State<CityDetail> {
   @override
   Widget build(BuildContext context) {
-    return Material(
-      child: Scaffold(
-        backgroundColor: myGrey,
-        floatingActionButton: sosFloatingButton(),
-        body: Column(
+    return Scaffold(
+      backgroundColor: myGrey,
+      floatingActionButton: sosFloatingButton(),
+      body: Hero(
+        tag: widget.stateName,
+        child: Column(
           children: [
             imageHeader(
               context,

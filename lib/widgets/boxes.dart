@@ -150,24 +150,27 @@ Widget cityCard(context, {image, dynamic text, page, check = false}) {
                             page,
                           );
                         },
-                        child: Container(
-                          width: dynamicWidth(context, .26),
-                          height: dynamicHeight(context, .05),
-                          decoration: BoxDecoration(
-                            color: myGrey,
-                            borderRadius: BorderRadius.circular(
-                              dynamicHeight(context, .01),
-                            ),
-                          ),
-                          child: Center(
-                            child: Text(
-                              "Explore >>",
-                              style: TextStyle(
-                                color: myBlack,
-                                fontWeight: FontWeight.w600,
-                                fontSize: dynamicWidth(context, .038),
+                        child: Hero(
+                          tag: text,
+                          child: Container(
+                            width: dynamicWidth(context, .26),
+                            height: dynamicHeight(context, .05),
+                            decoration: BoxDecoration(
+                              color: myGrey,
+                              borderRadius: BorderRadius.circular(
+                                dynamicHeight(context, .01),
                               ),
-                              maxLines: 1,
+                            ),
+                            child: Center(
+                              child: Text(
+                                "Explore >>",
+                                style: TextStyle(
+                                  color: myBlack,
+                                  fontWeight: FontWeight.w600,
+                                  fontSize: dynamicWidth(context, .038),
+                                ),
+                                maxLines: 1,
+                              ),
                             ),
                           ),
                         ),
@@ -324,7 +327,7 @@ Widget placeCard(context,
               Column(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Icon(
+                  const Icon(
                     Icons.bookmark,
                   ),
                   InkWell(
