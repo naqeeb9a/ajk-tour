@@ -53,21 +53,28 @@ class _CityDetailState extends State<CityDetail> {
                           physics: const BouncingScrollPhysics(),
                           itemCount: snapshot.data.length,
                           itemBuilder: (context, i) {
-                            return stateDetailCard(
+                            return cityDetailCard(
                               context,
-                              snapshot.data[i]["image"].toString(),
-                              snapshot.data[i]["name"].toString(),
-                              widget.stateName,
-                              snapshot.data[i]["latitude"].toString(),
-                              snapshot.data[i]["longitude"].toString(),
-                              snapshot.data[i]["description"].toString(),
+                              image: snapshot.data[i]["image"].toString(),
+                              placeName: snapshot.data[i]["name"].toString(),
+                              city: widget.stateName,
+                              latitude: snapshot.data[i]["latitude"].toString(),
+                              longitude:
+                                  snapshot.data[i]["longitude"].toString(),
+                              description:
+                                  snapshot.data[i]["description"].toString(),
                             );
                           },
                         );
+                      } else {
+                        return ListView.builder(
+                          itemCount: 3,
+                          physics: const NeverScrollableScrollPhysics(),
+                          itemBuilder: (BuildContext context, int index) {
+                            return cityDetailCard(context, shimmerCheck: true);
+                          },
+                        );
                       }
-                      return const Center(
-                        child: CircularProgressIndicator(),
-                      );
                     },
                   ),
                 ),
