@@ -10,7 +10,7 @@ import 'package:shimmer/shimmer.dart';
 Widget districtCard(context, {image, dynamic text, page, check = false}) {
   return Padding(
     padding: EdgeInsets.symmetric(
-      vertical: dynamicHeight(context, .012),
+      vertical: dynamicHeight(context, .002),
     ),
     child: Container(
       width: dynamicWidth(context, 1),
@@ -37,46 +37,41 @@ Widget districtCard(context, {image, dynamic text, page, check = false}) {
               padding: EdgeInsets.symmetric(
                 horizontal: dynamicWidth(context, .06),
               ),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text(
-                        text,
-                        style: TextStyle(
-                          color: myBlack,
-                          fontWeight: FontWeight.w600,
-                          fontSize: dynamicWidth(context, .06),
-                        ),
-                        maxLines: 1,
-                      ),
-                      InkWell(
-                        onTap: () {
-                          push(
-                            context,
-                            page,
-                          );
-                        },
-                        child: Container(
-                          width: dynamicWidth(context, .24),
-                          height: dynamicHeight(context, .046),
-                          color: myBlack,
-                          child: Center(
-                            child: Text(
-                              "Explore >>",
-                              style: TextStyle(
-                                color: myWhite,
-                                fontWeight: FontWeight.w600,
-                                fontSize: dynamicWidth(context, .036),
-                              ),
-                              maxLines: 1,
-                            ),
+                  Text(
+                    text,
+                    style: TextStyle(
+                      color: myBlack,
+                      fontWeight: FontWeight.w600,
+                      fontSize: dynamicWidth(context, .06),
+                    ),
+                    maxLines: 1,
+                  ),
+                  InkWell(
+                    onTap: () {
+                      push(
+                        context,
+                        page,
+                      );
+                    },
+                    child: Container(
+                      width: dynamicWidth(context, .24),
+                      height: dynamicHeight(context, .046),
+                      color: myBlack,
+                      child: Center(
+                        child: Text(
+                          "Explore >>",
+                          style: TextStyle(
+                            color: myWhite,
+                            fontWeight: FontWeight.w600,
+                            fontSize: dynamicWidth(context, .036),
                           ),
+                          maxLines: 1,
                         ),
                       ),
-                    ],
+                    ),
                   ),
                 ],
               ),
