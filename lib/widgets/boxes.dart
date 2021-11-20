@@ -82,82 +82,102 @@ Widget districtCard(context, {image, dynamic text, page, check = false}) {
   );
 }
 
-Widget cityCard(context, {image, dynamic text, page, check = false}) {
+Widget cityCard(context, {image, dynamic text, cityName, page, check = false}) {
   return Padding(
     padding: EdgeInsets.symmetric(
       vertical: dynamicHeight(context, .012),
+      horizontal: dynamicWidth(context, .04),
     ),
     child: Container(
-      width: dynamicWidth(context, .9),
-      height: dynamicHeight(context, .3),
+      width: dynamicWidth(context, .92),
+      height: dynamicHeight(context, .24),
       decoration: BoxDecoration(
         color: myWhite,
-        boxShadow: [
-
-        ]
-      ),
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.start,
-        children: [
-          SizedBox(
-            height: dynamicHeight(context, .22),
-            child: CachedNetworkImage(
-              imageUrl: image,
-              fit: BoxFit.fitWidth,
-              width: dynamicWidth(context, 1),
-              placeholder: (context, url) => Image.asset(
-                "assets/ajk_logo.png",
-                scale: 8,
-              ),
-            ),
+        borderRadius: BorderRadius.circular(
+          dynamicHeight(context, .015),
+        ),
+        image: DecorationImage(
+          image: CachedNetworkImageProvider(
+            image,
           ),
-          SizedBox(
-            height: dynamicHeight(context, .08),
-            child: Padding(
-              padding: EdgeInsets.symmetric(
-                horizontal: dynamicWidth(context, .06),
-              ),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text(
-                    text,
-                    style: TextStyle(
-                      color: myBlack,
-                      fontWeight: FontWeight.w600,
-                      fontSize: dynamicWidth(context, .06),
-                    ),
-                    maxLines: 1,
-                  ),
-                  InkWell(
-                    onTap: () {
-                      push(
-                        context,
-                        page,
-                      );
-                    },
-                    child: Container(
-                      width: dynamicWidth(context, .26),
-                      height: dynamicHeight(context, .05),
-                      color: myBlack,
-                      child: Center(
-                        child: Text(
-                          "Explore >>",
-                          style: TextStyle(
-                            color: myWhite,
-                            fontWeight: FontWeight.w600,
-                            fontSize: dynamicWidth(context, .038),
-                          ),
-                          maxLines: 1,
-                        ),
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-            ),
+          fit: BoxFit.cover,
+        ),
+        boxShadow: [
+          BoxShadow(
+            color: myBlack.withOpacity(0.4),
+            spreadRadius: 2,
+            blurRadius: 6,
+            offset: const Offset(0, 3), // changes position of shadow
           ),
         ],
+      ),
+      child: Material(
+        color: noColor,
+        child: Stack(
+          children: [
+            Positioned(
+              bottom: 0.0,
+              child: Container(
+                width: dynamicWidth(context, .92),
+                height: dynamicHeight(context, .08),
+                decoration: BoxDecoration(
+                  color: myBlack.withOpacity(.6),
+                  borderRadius: BorderRadius.circular(
+                    dynamicHeight(context, .015),
+                  ),
+                ),
+                child: Padding(
+                  padding: EdgeInsets.symmetric(
+                    horizontal: dynamicWidth(context, .06),
+                  ),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(
+                        text,
+                        style: TextStyle(
+                          color: myWhite,
+                          fontWeight: FontWeight.w600,
+                          fontSize: dynamicWidth(context, .06),
+                        ),
+                        maxLines: 1,
+                      ),
+                      InkWell(
+                        onTap: () {
+                          push(
+                            context,
+                            page,
+                          );
+                        },
+                        child: Container(
+                          width: dynamicWidth(context, .26),
+                          height: dynamicHeight(context, .05),
+                          decoration: BoxDecoration(
+                            color: myGrey,
+                            borderRadius: BorderRadius.circular(
+                              dynamicHeight(context, .01),
+                            ),
+                          ),
+                          child: Center(
+                            child: Text(
+                              "Explore >>",
+                              style: TextStyle(
+                                color: myBlack,
+                                fontWeight: FontWeight.w600,
+                                fontSize: dynamicWidth(context, .038),
+                              ),
+                              maxLines: 1,
+                            ),
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            ),
+          ],
+        ),
       ),
     ),
   );

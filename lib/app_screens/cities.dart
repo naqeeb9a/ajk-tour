@@ -50,6 +50,7 @@ class _CitiesState extends State<Cities> {
                         context,
                         image: snapshot.data[i]["image"].toString(),
                         text: snapshot.data[i]["name"].toString(),
+                        cityName: widget.cityName.toString(),
                         page: CityDetail(
                           stateName: snapshot.data[i]["name"].toString(),
                           image: snapshot.data[i]["image"].toString(),
