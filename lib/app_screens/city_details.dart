@@ -53,7 +53,7 @@ class _CityDetailState extends State<CityDetail> {
                           physics: const BouncingScrollPhysics(),
                           itemCount: snapshot.data.length,
                           itemBuilder: (context, i) {
-                            return cityDetailCard(
+                            return placeCard(
                               context,
                               image: snapshot.data[i]["image"].toString(),
                               placeName: snapshot.data[i]["name"].toString(),
@@ -71,7 +71,7 @@ class _CityDetailState extends State<CityDetail> {
                           itemCount: 3,
                           physics: const NeverScrollableScrollPhysics(),
                           itemBuilder: (BuildContext context, int index) {
-                            return cityDetailCard(context, shimmerCheck: true);
+                            return placeCard(context, shimmerCheck: true);
                           },
                         );
                       }
