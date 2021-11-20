@@ -3,6 +3,7 @@ import 'package:ajk_tour/utils/config.dart';
 import 'package:ajk_tour/widgets/boxes.dart';
 import 'package:ajk_tour/widgets/dynamic_sizes.dart';
 import 'package:ajk_tour/widgets/essential_widgets.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 
 class PlaceDetail extends StatefulWidget {
@@ -30,53 +31,80 @@ class _PlaceDetailState extends State<PlaceDetail> {
       floatingActionButton: sosFloatingButton(),
       body: Column(
         children: [
-          Stack(
-            children: [
-              Column(
-                children: [
-                  SizedBox(
-                    width: dynamicWidth(context, 1),
-                    height: dynamicHeight(context, .32),
-                    child: homeSlider(
-                      context,
-                      dynamicHeight(context, .4),
-                      3,
-                      1.0,
-                      widget.image,
-                    ),
-                  ),
-                ],
-              ),
-              SafeArea(
-                child: Padding(
-                  padding: EdgeInsets.symmetric(
-                    vertical: dynamicHeight(context, .01),
-                    horizontal: dynamicHeight(context, .02),
-                  ),
-                  child: InkWell(
-                    onTap: () {
-                      pop(context);
-                    },
+          SafeArea(
+            child: Stack(
+              children: [
+                SizedBox(
+                  width: dynamicWidth(context, 1),
+                  height: dynamicHeight(context, .5),
+                  child: Center(
                     child: Container(
-                      width: dynamicWidth(context, .14),
-                      height: dynamicHeight(context, .06),
+                      width: dynamicWidth(context, .92),
+                      height: dynamicHeight(context, .46),
                       decoration: BoxDecoration(
+                        color: myWhite,
                         borderRadius: BorderRadius.circular(
-                          dynamicWidth(context, .02),
+                          dynamicWidth(context, .12),
                         ),
-                        color: myBlack.withOpacity(0.5),
+                        image: DecorationImage(
+                          image: CachedNetworkImageProvider(
+                            widget.image,
+                          ),
+                          fit: BoxFit.cover,
+                        ),
                       ),
-                      child: const Center(
-                        child: Icon(
-                          Icons.arrow_back,
-                          color: myWhite,
-                        ),
+                      child: Column(
+                        children: [
+                          Row(
+                            children: [
+                              Padding(
+                                padding: EdgeInsets.symmetric(
+                                  vertical: dynamicHeight(context, .02),
+                                  horizontal: dynamicWidth(context, .06),
+                                ),
+                                child: InkWell(
+                                  onTap: () {
+                                    pop(context);
+                                  },
+                                  child: Container(
+                                    width: dynamicWidth(context, .1),
+                                    height: dynamicWidth(context, .1),
+                                    decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(
+                                        dynamicWidth(context, .02),
+                                      ),
+                                      color: myWhite,
+                                    ),
+                                    child: const Center(
+                                      child: Icon(
+                                        Icons.arrow_back,
+                                        color: myBlack,
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ],
                       ),
                     ),
                   ),
                 ),
-              ),
-            ],
+                Positioned(
+                  bottom: 0.0,
+                  right: dynamicWidth(context, .12),
+                  child: CircleAvatar(
+                    radius: dynamicWidth(context, .046),
+                    backgroundColor: myWhite,
+                    child: const Icon(
+                      Icons.favorite_border_rounded,
+                      color: myBlack,
+                    ),
+                  ),
+                ),
+              ],
+            ),
           ),
           Flexible(
             child: SizedBox(
@@ -86,7 +114,7 @@ class _PlaceDetailState extends State<PlaceDetail> {
                   children: [
                     Padding(
                       padding: EdgeInsets.only(
-                        top: dynamicHeight(context, .02),
+                        top: dynamicHeight(context, .01),
                         bottom: dynamicHeight(context, .01),
                       ),
                       child: Row(
@@ -113,10 +141,6 @@ class _PlaceDetailState extends State<PlaceDetail> {
                                 ),
                               ],
                             ),
-                          ),
-                          const Icon(
-                            Icons.favorite_border_rounded,
-                            color: myBlack,
                           ),
                         ],
                       ),
