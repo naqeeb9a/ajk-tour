@@ -217,133 +217,142 @@ Widget placeCard(context,
             ),
           ),
         )
-      : InkWell(
-          onTap: () {
-            push(
-              context,
-              PlaceDetail(
-                name: placeName,
-                image: image,
-                city: city,
-                latitude: latitude,
-                longitude: longitude,
-                description: description,
-              ),
-            );
-          },
-          child: Container(
-            margin: EdgeInsets.all(dynamicHeight(context, 0.02)),
-            padding: EdgeInsets.all(dynamicHeight(context, 0.016)),
-            width: dynamicWidth(context, .9),
-            height: dynamicHeight(context, .2),
-            decoration: BoxDecoration(
-              color: myWhite,
-              borderRadius: BorderRadius.circular(
-                dynamicHeight(context, .02),
-              ),
-              boxShadow: [
-                BoxShadow(
-                  color: myBlack.withOpacity(0.3),
-                  spreadRadius: 2,
-                  blurRadius: 6,
-                  offset: const Offset(0, 3), // changes position of shadow
-                ),
-              ],
+      : Container(
+          margin: EdgeInsets.all(dynamicHeight(context, 0.02)),
+          padding: EdgeInsets.all(dynamicHeight(context, 0.016)),
+          width: dynamicWidth(context, .9),
+          height: dynamicHeight(context, .2),
+          decoration: BoxDecoration(
+            color: myWhite,
+            borderRadius: BorderRadius.circular(
+              dynamicHeight(context, .02),
             ),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                ClipRRect(
-                  borderRadius:
-                      BorderRadius.circular(dynamicHeight(context, .012)),
-                  child: Image.network(
-                    image,
-                    height: dynamicHeight(context, .18),
-                    width: dynamicWidth(context, 0.3),
-                    fit: BoxFit.fitHeight,
-                  ),
-                ),
-                SizedBox(
+            boxShadow: [
+              BoxShadow(
+                color: myBlack.withOpacity(0.3),
+                spreadRadius: 2,
+                blurRadius: 6,
+                offset: const Offset(0, 3), // changes position of shadow
+              ),
+            ],
+          ),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              ClipRRect(
+                borderRadius:
+                    BorderRadius.circular(dynamicHeight(context, .012)),
+                child: Image.network(
+                  image,
+                  height: dynamicHeight(context, .18),
                   width: dynamicWidth(context, 0.3),
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        placeName,
-                        style: TextStyle(
-                          color: myBlack,
-                          fontWeight: FontWeight.w600,
-                          fontSize: dynamicWidth(context, .056),
-                        ),
-                        maxLines: 1,
+                  fit: BoxFit.fitHeight,
+                ),
+              ),
+              SizedBox(
+                width: dynamicWidth(context, 0.3),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      placeName,
+                      style: TextStyle(
+                        color: myBlack,
+                        fontWeight: FontWeight.w600,
+                        fontSize: dynamicWidth(context, .056),
                       ),
-                      RichText(
-                        text: TextSpan(
-                          style: Theme.of(context).textTheme.bodyText2,
-                          children: [
-                            WidgetSpan(
-                              child: Icon(
-                                Icons.location_on_outlined,
-                                color: myBlack.withOpacity(.5),
-                                size: dynamicWidth(context, .044),
-                              ),
+                      maxLines: 1,
+                    ),
+                    RichText(
+                      text: TextSpan(
+                        style: Theme.of(context).textTheme.bodyText2,
+                        children: [
+                          WidgetSpan(
+                            child: Icon(
+                              Icons.location_on_outlined,
+                              color: myBlack.withOpacity(.5),
+                              size: dynamicWidth(context, .044),
                             ),
-                            TextSpan(
-                              text: " $city",
-                              style: TextStyle(
-                                color: myBlack.withOpacity(.5),
-                                fontWeight: FontWeight.normal,
-                                fontSize: dynamicWidth(context, .044),
-                              ),
+                          ),
+                          TextSpan(
+                            text: " $city",
+                            style: TextStyle(
+                              color: myBlack.withOpacity(.5),
+                              fontWeight: FontWeight.normal,
+                              fontSize: dynamicWidth(context, .044),
                             ),
-                          ],
-                        ),
-                      ),
-                      Row(
-                        children: const [
-                          Text("4.7"),
-                          Icon(
-                            Icons.star,
-                            size: 15,
-                          ),
-                          Icon(
-                            Icons.star,
-                            size: 15,
-                          ),
-                          Icon(
-                            Icons.star,
-                            size: 15,
-                          ),
-                          Icon(
-                            Icons.star,
-                            size: 15,
-                          ),
-                          Icon(
-                            Icons.star,
-                            color: myGrey,
-                            size: 15,
                           ),
                         ],
                       ),
-                      Text(
-                        description.toString(),
-                        maxLines: 2,
-                        overflow: TextOverflow.ellipsis,
-                      )
-                    ],
-                  ),
-                ),
-                Column(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: const [
-                    Icon(Icons.bookmark),
-                    Icon(Icons.arrow_forward)
+                    ),
+                    Row(
+                      children: const [
+                        Text("4.7"),
+                        Icon(
+                          Icons.star,
+                          size: 15,
+                        ),
+                        Icon(
+                          Icons.star,
+                          size: 15,
+                        ),
+                        Icon(
+                          Icons.star,
+                          size: 15,
+                        ),
+                        Icon(
+                          Icons.star,
+                          size: 15,
+                        ),
+                        Icon(
+                          Icons.star,
+                          color: myGrey,
+                          size: 15,
+                        ),
+                      ],
+                    ),
+                    Text(
+                      description.toString(),
+                      maxLines: 2,
+                      overflow: TextOverflow.ellipsis,
+                    )
                   ],
-                )
-              ],
-            ),
+                ),
+              ),
+              Column(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Icon(
+                    Icons.bookmark,
+                  ),
+                  InkWell(
+                    onTap: () {
+                      push(
+                        context,
+                        PlaceDetail(
+                          name: placeName,
+                          image: image,
+                          city: city,
+                          latitude: latitude,
+                          longitude: longitude,
+                          description: description,
+                        ),
+                      );
+                    },
+                    child: Padding(
+                      padding: EdgeInsets.all(
+                        dynamicWidth(context, .02),
+                      ),
+                      child: const Icon(
+                        Icons.arrow_forward,
+                      ),
+                    ),
+                  )
+                ],
+              )
+            ],
           ),
         );
 }
