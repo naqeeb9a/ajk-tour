@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 
 import 'dynamic_sizes.dart';
 
-customBar(text, {color = ""}) {
+customBar(text, {color = "", elevation = "", bgColor = ""}) {
   return AppBar(
     title: Text(
       text,
@@ -15,8 +15,8 @@ customBar(text, {color = ""}) {
     iconTheme: IconThemeData(
       color: color == "" ? myBlack : color,
     ),
-    backgroundColor: Colors.transparent,
-    elevation: 0,
+    backgroundColor: bgColor == "" ? Colors.transparent : bgColor,
+    elevation: elevation == "" ? 0 : elevation,
   );
 }
 
