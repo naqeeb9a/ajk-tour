@@ -142,7 +142,7 @@ dynamic customDialog(context) {
       alignment: Alignment.topCenter,
       children: [
         SizedBox(
-          height: dynamicHeight(context, .4),
+          height: dynamicHeight(context, .44),
           child: Padding(
             padding: EdgeInsets.fromLTRB(
               dynamicWidth(context, .1),

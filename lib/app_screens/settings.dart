@@ -82,7 +82,7 @@ class _SettingsState extends State<Settings> {
               child: Container(
                 width: dynamicWidth(context, .86),
                 height: profileHeight == false
-                    ? dynamicHeight(context, .1)
+                    ? dynamicHeight(context, .11)
                     : dynamicHeight(context, .5),
                 decoration: BoxDecoration(
                   color: myWhite,

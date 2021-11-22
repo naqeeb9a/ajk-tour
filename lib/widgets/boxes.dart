@@ -3,7 +3,6 @@ import 'package:ajk_tour/utils/app_routes.dart';
 import 'package:ajk_tour/utils/config.dart';
 import 'package:ajk_tour/widgets/dynamic_sizes.dart';
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:shimmer/shimmer.dart';
 
