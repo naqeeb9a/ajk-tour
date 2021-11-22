@@ -17,7 +17,7 @@ class _SettingsState extends State<Settings> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: myGrey,
-      floatingActionButton: sosFloatingButton(),
+      floatingActionButton: sosFloatingButton(context),
       body: SingleChildScrollView(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,

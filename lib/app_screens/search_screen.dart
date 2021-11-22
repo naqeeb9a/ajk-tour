@@ -17,7 +17,7 @@ class _SearchScreenState extends State<SearchScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: myGrey,
-      floatingActionButton: sosFloatingButton(),
+      floatingActionButton: sosFloatingButton(context),
       body: SafeArea(
         child: Center(
           child: SizedBox(

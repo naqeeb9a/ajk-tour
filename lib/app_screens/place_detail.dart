@@ -28,7 +28,7 @@ class _PlaceDetailState extends State<PlaceDetail> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: myGrey,
-      floatingActionButton: sosFloatingButton(),
+      floatingActionButton: sosFloatingButton(context),
       body: Column(
         children: [
           SafeArea(

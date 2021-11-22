@@ -17,7 +17,7 @@ class SelectedDetailPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: myGrey,
-      floatingActionButton: sosFloatingButton(),
+      floatingActionButton: sosFloatingButton(context),
       body: Stack(
         children: [
           PageView(

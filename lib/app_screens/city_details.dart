@@ -26,7 +26,7 @@ class _CityDetailState extends State<CityDetail> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: myGrey,
-      floatingActionButton: sosFloatingButton(),
+      floatingActionButton: sosFloatingButton(context),
       body: Hero(
         tag: widget.stateName,
         child: Column(

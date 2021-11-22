@@ -114,14 +114,87 @@ Widget imageHeader(context, image, text, appBar, {height = "", assetImage}) {
   );
 }
 
-Widget sosFloatingButton() {
-  return const FloatingActionButton.extended(
-    label: Text("SOS"),
-    onPressed: null,
+Widget sosFloatingButton(context) {
+  return FloatingActionButton.extended(
+    label: const Text("SOS"),
+    onPressed: () {
+      showDialog(
+          context: context,
+          builder: (BuildContext context) {
+            return customDialog(context);
+          });
+    },
     backgroundColor: Colors.red,
     isExtended: true,
-    icon: Icon(
+    icon: const Icon(
       Icons.add_alert,
+    ),
+  );
+}
+
+dynamic customDialog(context) {
+  return Dialog(
+    shape: RoundedRectangleBorder(
+      borderRadius: BorderRadius.circular(4.0),
+    ),
+    child: Stack(
+      clipBehavior: Clip.none,
+      alignment: Alignment.topCenter,
+      children: [
+        SizedBox(
+          height: dynamicHeight(context, .4),
+          child: Padding(
+            padding: EdgeInsets.fromLTRB(
+              dynamicWidth(context, .1),
+              dynamicHeight(context, .12),
+              dynamicWidth(context, .1),
+              dynamicHeight(context, .01),
+            ),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text(
+                  'Success !!!',
+                  style: TextStyle(
+                    color: primaryGreen,
+                    fontWeight: FontWeight.bold,
+                    fontSize: dynamicWidth(context, .06),
+                  ),
+                ),
+                Text(
+                  "AJK Police received your SOS Request."
+                  "\nWe received your Name, Mobile Number and Location."
+                  "\nSoon we'll be there!",
+                  style: TextStyle(
+                    fontSize: dynamicWidth(context, .046),
+                  ),
+                  textAlign: TextAlign.justify,
+                ),
+                MaterialButton(
+                  onPressed: () {
+                    Navigator.of(context).pop();
+                  },
+                  color: primaryGreen,
+                  child: const Text(
+                    'Got It',
+                    style: TextStyle(
+                      color: Colors.white,
+                    ),
+                  ),
+                )
+              ],
+            ),
+          ),
+        ),
+        Positioned(
+          top: -dynamicHeight(context, .07),
+          child: Image.asset(
+            "assets/ajk_police.png",
+            fit: BoxFit.cover,
+            width: dynamicWidth(context, .3),
+          ),
+        ),
+      ],
     ),
   );
 }

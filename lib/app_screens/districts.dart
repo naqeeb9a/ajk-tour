@@ -19,7 +19,7 @@ class _DistrictsState extends State<Districts> {
     return Scaffold(
       backgroundColor: myGrey,
       appBar: customBar("DISTRICTS", bgColor: myGrey),
-      floatingActionButton: sosFloatingButton(),
+      floatingActionButton: sosFloatingButton(context),
       body: Padding(
         padding: EdgeInsets.symmetric(
           vertical: dynamicHeight(context, .02),
