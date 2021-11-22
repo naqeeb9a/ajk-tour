@@ -58,7 +58,9 @@ Widget searchbar(context, {enabled = true, controller, setStateFunction}) {
     margin: const EdgeInsets.symmetric(horizontal: 5),
     decoration: BoxDecoration(
         color: myWhite,
-        borderRadius: BorderRadius.circular(10),
+        borderRadius: BorderRadius.circular(
+          dynamicWidth(context, .02),
+        ),
         boxShadow: const [
           BoxShadow(
               color: myGrey,
@@ -73,9 +75,13 @@ Widget searchbar(context, {enabled = true, controller, setStateFunction}) {
                 onTap: () {
                   Navigator.pop(context);
                 },
-                child: const Padding(
-                  padding: EdgeInsets.only(left: 10),
-                  child: Icon(Icons.arrow_back),
+                child: Padding(
+                  padding: EdgeInsets.only(
+                    left: dynamicWidth(context, .03),
+                  ),
+                  child: const Icon(
+                    Icons.arrow_back,
+                  ),
                 ),
               )
             : Container(),
@@ -84,14 +90,16 @@ Widget searchbar(context, {enabled = true, controller, setStateFunction}) {
             controller: controller,
             enabled: enabled,
             autofocus: enabled,
-            decoration: const InputDecoration(
+            decoration: InputDecoration(
                 border: InputBorder.none,
                 focusedBorder: InputBorder.none,
                 enabledBorder: InputBorder.none,
                 errorBorder: InputBorder.none,
                 disabledBorder: InputBorder.none,
-                contentPadding: EdgeInsets.only(left: 20),
-                hintText: "Search Your Product"),
+                contentPadding: EdgeInsets.only(
+                  left: dynamicWidth(context, .04),
+                ),
+                hintText: "Search Place"),
             onSubmitted: (value) {
               controller.text = value;
               setStateFunction();
@@ -102,9 +110,13 @@ Widget searchbar(context, {enabled = true, controller, setStateFunction}) {
           onTap: () {
             setStateFunction();
           },
-          child: const Padding(
-            padding: EdgeInsets.only(right: 10),
-            child: Icon(Icons.search_sharp),
+          child: Padding(
+            padding: EdgeInsets.only(
+              right: dynamicWidth(context, .03),
+            ),
+            child: const Icon(
+              Icons.search_sharp,
+            ),
           ),
         ),
       ],

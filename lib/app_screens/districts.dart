@@ -21,8 +21,8 @@ class _DistrictsState extends State<Districts> {
       appBar: customBar("DISTRICTS", bgColor: myGrey),
       floatingActionButton: sosFloatingButton(context),
       body: Padding(
-        padding: EdgeInsets.symmetric(
-          vertical: dynamicHeight(context, .02),
+        padding: EdgeInsets.only(
+          bottom: dynamicHeight(context, .06),
         ),
         child: SizedBox(
           width: dynamicWidth(context, 1),

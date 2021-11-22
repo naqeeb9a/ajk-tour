@@ -171,7 +171,7 @@ rowText(context) {
       crossAxisAlignment: CrossAxisAlignment.center,
       children: <Widget>[
         Text(
-          'Popular Hotels',
+          'Popular Cities',
           style: TextStyle(
             fontWeight: FontWeight.bold,
             fontSize: dynamicWidth(context, .05),

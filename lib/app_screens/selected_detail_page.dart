@@ -24,12 +24,12 @@ class SelectedDetailPage extends StatelessWidget {
             controller: _pageController,
             scrollDirection: Axis.horizontal,
             children: List.generate(
-              tabImages1.length,
+              tabImages.length,
               (int index) => Container(
                 decoration: BoxDecoration(
                   image: DecorationImage(
-                    fit: BoxFit.cover,
-                    image: CachedNetworkImageProvider(tabImages1[index]),
+                    fit: BoxFit.fitHeight,
+                    image: CachedNetworkImageProvider(tabImages[index]),
                   ),
                 ),
               ),
