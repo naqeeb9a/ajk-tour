@@ -1,5 +1,6 @@
 import 'package:ajk_tour/widgets/bottom_nav.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 void main() {
   runApp(const MyApp());
@@ -29,8 +30,10 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'AJK Tour',
       theme: ThemeData(
-        primarySwatch: primaryColor,
-      ),
+          primarySwatch: primaryColor,
+          textTheme: GoogleFonts.acmeTextTheme(
+            Theme.of(context).textTheme,
+          )),
       home: const BottomNav(),
     );
   }
