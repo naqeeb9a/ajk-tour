@@ -30,10 +30,11 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'AJK Tour',
       theme: ThemeData(
-          primarySwatch: primaryColor,
-          textTheme: GoogleFonts.acmeTextTheme(
-            Theme.of(context).textTheme,
-          )),
+        primarySwatch: primaryColor,
+        textTheme: GoogleFonts.acmeTextTheme(
+          Theme.of(context).textTheme,
+        ),
+      ),
       home: const BottomNav(),
     );
   }
