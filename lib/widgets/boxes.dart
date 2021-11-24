@@ -83,142 +83,151 @@ Widget districtCard(context, {image, dynamic text, page, check = false}) {
 }
 
 Widget cityCard(context,
-    {image, dynamic text, page, check = false, width = "", homeCard = false,shimmercheck=false}) {
-  return(shimmercheck==true)? Shimmer.fromColors(
-    baseColor: Colors.grey,
-    highlightColor: Colors.grey[300]!,
-    child: Padding(
-      padding: EdgeInsets.symmetric(
-      vertical: dynamicHeight(context, .014),
-      horizontal:dynamicWidth(context, .024),
-    ),
-      child: Container(
-          width:dynamicWidth(context, .8),
-          height: dynamicHeight(context, .24),
-          decoration: BoxDecoration(
-            color: Colors.grey,
-            borderRadius: BorderRadius.circular(
-              dynamicHeight(context, .015),
+    {image,
+    dynamic text,
+    page,
+    check = false,
+    width = "",
+    homeCard = false,
+    shimmerCheck = false}) {
+  return (shimmerCheck == true)
+      ? Shimmer.fromColors(
+          baseColor: Colors.grey,
+          highlightColor: Colors.grey[300]!,
+          child: Padding(
+            padding: EdgeInsets.symmetric(
+              vertical: dynamicHeight(context, .014),
+              horizontal: dynamicWidth(context, .024),
             ),
-            boxShadow: [
-              BoxShadow(
-                color: myBlack.withOpacity(0.4),
-                spreadRadius: 2,
-                blurRadius: 6,
-                offset: const Offset(0, 3), // changes position of shadow
-              ),
-            ],
-          ),),
-    ),
-  ):Padding(
-    padding: EdgeInsets.symmetric(
-      vertical: dynamicHeight(context, .014),
-      horizontal: homeCard == false
-          ? dynamicWidth(context, .05)
-          : dynamicWidth(context, .024),
-    ),
-    child: Container(
-      width: width == "" ? dynamicWidth(context, .9) : width,
-      height: dynamicHeight(context, .24),
-      decoration: BoxDecoration(
-        color: myWhite,
-        borderRadius: BorderRadius.circular(
-          dynamicHeight(context, .015),
-        ),
-        image: DecorationImage(
-          image: CachedNetworkImageProvider(
-            image,
-          ),
-          fit: BoxFit.cover,
-        ),
-        boxShadow: [
-          BoxShadow(
-            color: myBlack.withOpacity(0.4),
-            spreadRadius: 2,
-            blurRadius: 6,
-            offset: const Offset(0, 3), // changes position of shadow
-          ),
-        ],
-      ),
-      child: Material(
-        color: noColor,
-        child: Stack(
-          children: [
-            Positioned(
-              bottom: 0.0,
-              child: Container(
-                width: width == "" ? dynamicWidth(context, .9) : width,
-                height: dynamicHeight(context, .074),
-                decoration: BoxDecoration(
-                  color: myBlack.withOpacity(.6),
-                  borderRadius: BorderRadius.circular(
-                    dynamicHeight(context, .015),
-                  ),
+            child: Container(
+              width: dynamicWidth(context, .8),
+              height: dynamicHeight(context, .24),
+              decoration: BoxDecoration(
+                color: Colors.grey,
+                borderRadius: BorderRadius.circular(
+                  dynamicHeight(context, .015),
                 ),
-                child: Padding(
-                  padding: EdgeInsets.symmetric(
-                    horizontal: dynamicWidth(context, .054),
+                boxShadow: [
+                  BoxShadow(
+                    color: myBlack.withOpacity(0.4),
+                    spreadRadius: 2,
+                    blurRadius: 6,
+                    offset: const Offset(0, 3), // changes position of shadow
                   ),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      SizedBox(
-                        width: homeCard == false
-                            ? dynamicWidth(context, .5)
-                            : dynamicWidth(context, .42),
-                        child: Text(
-                          text.toString().toUpperCase(),
-                          style: TextStyle(
-                            color: myWhite,
-                            fontWeight: FontWeight.w600,
-                            fontSize: dynamicWidth(context, .056),
-                          ),
-                          overflow: TextOverflow.ellipsis,
-                          maxLines: 1,
+                ],
+              ),
+            ),
+          ),
+        )
+      : Padding(
+          padding: EdgeInsets.symmetric(
+            vertical: dynamicHeight(context, .014),
+            horizontal: homeCard == false
+                ? dynamicWidth(context, .05)
+                : dynamicWidth(context, .024),
+          ),
+          child: Container(
+            width: width == "" ? dynamicWidth(context, .9) : width,
+            height: dynamicHeight(context, .24),
+            decoration: BoxDecoration(
+              color: myWhite,
+              borderRadius: BorderRadius.circular(
+                dynamicHeight(context, .015),
+              ),
+              image: DecorationImage(
+                image: CachedNetworkImageProvider(
+                  image,
+                ),
+                fit: BoxFit.cover,
+              ),
+              boxShadow: [
+                BoxShadow(
+                  color: myBlack.withOpacity(0.4),
+                  spreadRadius: 2,
+                  blurRadius: 6,
+                  offset: const Offset(0, 3), // changes position of shadow
+                ),
+              ],
+            ),
+            child: Material(
+              color: noColor,
+              child: Stack(
+                children: [
+                  Positioned(
+                    bottom: 0.0,
+                    child: Container(
+                      width: width == "" ? dynamicWidth(context, .9) : width,
+                      height: dynamicHeight(context, .074),
+                      decoration: BoxDecoration(
+                        color: myBlack.withOpacity(.6),
+                        borderRadius: BorderRadius.circular(
+                          dynamicHeight(context, .015),
                         ),
                       ),
-                      InkWell(
-                        onTap: () {
-                          push(
-                            context,
-                            page,
-                          );
-                        },
-                        child: Hero(
-                          tag: text,
-                          child: Container(
-                            width: dynamicWidth(context, .26),
-                            height: dynamicHeight(context, .05),
-                            decoration: BoxDecoration(
-                              color: myGrey,
-                              borderRadius: BorderRadius.circular(
-                                dynamicHeight(context, .01),
-                              ),
-                            ),
-                            child: Center(
+                      child: Padding(
+                        padding: EdgeInsets.symmetric(
+                          horizontal: dynamicWidth(context, .054),
+                        ),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            SizedBox(
+                              width: homeCard == false
+                                  ? dynamicWidth(context, .5)
+                                  : dynamicWidth(context, .42),
                               child: Text(
-                                "Explore >>",
+                                text.toString().toUpperCase(),
                                 style: TextStyle(
-                                  color: myBlack,
+                                  color: myWhite,
                                   fontWeight: FontWeight.w600,
-                                  fontSize: dynamicWidth(context, .038),
+                                  fontSize: dynamicWidth(context, .056),
                                 ),
+                                overflow: TextOverflow.ellipsis,
                                 maxLines: 1,
                               ),
                             ),
-                          ),
+                            InkWell(
+                              onTap: () {
+                                push(
+                                  context,
+                                  page,
+                                );
+                              },
+                              child: Hero(
+                                tag: text,
+                                child: Container(
+                                  width: dynamicWidth(context, .26),
+                                  height: dynamicHeight(context, .05),
+                                  decoration: BoxDecoration(
+                                    color: myGrey,
+                                    borderRadius: BorderRadius.circular(
+                                      dynamicHeight(context, .01),
+                                    ),
+                                  ),
+                                  child: Center(
+                                    child: Text(
+                                      "Explore >>",
+                                      style: TextStyle(
+                                        color: myBlack,
+                                        fontWeight: FontWeight.w600,
+                                        fontSize: dynamicWidth(context, .038),
+                                      ),
+                                      maxLines: 1,
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ],
                         ),
                       ),
-                    ],
+                    ),
                   ),
-                ),
+                ],
               ),
             ),
-          ],
-        ),
-      ),
-    ),
-  );
+          ),
+        );
 }
 
 Widget placeCard(context,

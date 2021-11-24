@@ -1,3 +1,4 @@
+import 'package:ajk_tour/app_screens/place_detail.dart';
 import 'package:ajk_tour/utils/app_routes.dart';
 import 'package:ajk_tour/utils/config.dart';
 import 'package:ajk_tour/widgets/dynamic_sizes.dart';
@@ -10,12 +11,19 @@ class SelectedDetailPage extends StatelessWidget {
   final String previousImage;
   final String previousDescription;
   final String previousText;
+  final String previousLatitude;
+  final String previousLongitude;
+  final String previousCity;
   final _pageController = PageController();
 
   SelectedDetailPage({
     Key? key,
     required this.previousImage,
-    required this.previousDescription, required this.previousText,
+    required this.previousDescription,
+    required this.previousText,
+    required this.previousLatitude,
+    required this.previousLongitude,
+    required this.previousCity,
   }) : super(key: key);
 
   @override
@@ -99,7 +107,7 @@ class SelectedDetailPage extends StatelessWidget {
                     padding: EdgeInsets.only(
                       top: dynamicHeight(context, .02),
                     ),
-                    child:  Text(
+                    child: Text(
                       previousText.toString(),
                       maxLines: 2,
                       overflow: TextOverflow.fade,
@@ -112,9 +120,9 @@ class SelectedDetailPage extends StatelessWidget {
                     padding: EdgeInsets.only(
                       top: dynamicHeight(context, .02),
                     ),
-                    child:  Text(
+                    child: Text(
                       previousDescription.toString(),
-                      maxLines: 3,
+                      maxLines: 2,
                       overflow: TextOverflow.fade,
                       style: TextStyle(
                         color: myWhite,
@@ -124,25 +132,40 @@ class SelectedDetailPage extends StatelessWidget {
                   SizedBox(
                     height: dynamicHeight(context, .05),
                   ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    children: <Widget>[
-                      Container(
-                        width: dynamicWidth(context, .34),
-                        height: dynamicHeight(context, .06),
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(
-                            dynamicWidth(context, .02),
-                          ),
-                          color: myWhite,
+                  InkWell(
+                    onTap: () {
+                      push(
+                        context,
+                        PlaceDetail(
+                          image: previousImage,
+                          name: previousText,
+                          city: previousCity,
+                          latitude: previousLatitude,
+                          longitude: previousLongitude,
+                          description: previousDescription,
                         ),
-                        child: const Center(
-                          child: Text(
-                            'Explore Now >>',
+                      );
+                    },
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: <Widget>[
+                        Container(
+                          width: dynamicWidth(context, .34),
+                          height: dynamicHeight(context, .06),
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(
+                              dynamicWidth(context, .02),
+                            ),
+                            color: myWhite,
                           ),
-                        ),
-                      )
-                    ],
+                          child: const Center(
+                            child: Text(
+                              'Explore Now >>',
+                            ),
+                          ),
+                        )
+                      ],
+                    ),
                   ),
                 ],
               ),

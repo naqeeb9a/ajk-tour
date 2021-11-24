@@ -140,14 +140,14 @@ class _HomePageState extends State<HomePage>
   }
 }
 
-tabsListing(context, controller, tabarray) {
+tabsListing(context, controller, tabArray) {
   return Container(
     height: dynamicHeight(context, .04),
     margin: EdgeInsets.only(
       left: dynamicWidth(context, .04),
     ),
     child: DefaultTabController(
-      length: tabarray.length,
+      length: tabArray.length,
       child: TabBar(
           controller: controller,
           labelPadding: EdgeInsets.symmetric(
@@ -161,7 +161,7 @@ tabsListing(context, controller, tabarray) {
           unselectedLabelColor: myBlack.withOpacity(.5),
           indicatorColor: myBlack,
           indicatorSize: TabBarIndicatorSize.label,
-          tabs: tabarray),
+          tabs: tabArray),
     ),
   );
 }
@@ -197,7 +197,7 @@ smoothIndicatorCustomView(context, _pageController) {
 rowText(context) {
   return Padding(
     padding: EdgeInsets.only(
-      top: dynamicHeight(context, .04),
+      top: dynamicHeight(context, .02),
       left: dynamicWidth(context, .06),
       right: dynamicWidth(context, .06),
     ),
@@ -263,6 +263,12 @@ upperCards(context, _pageController, apiText) {
                             previousDescription: snapshot.data[index]
                                 ["description"],
                             previousText: snapshot.data[index]["name"],
+                            previousLatitude:
+                                snapshot.data[index]["latitude"].toString(),
+                            previousLongitude:
+                                snapshot.data[index]["longitude"].toString(),
+                            previousCity:
+                                snapshot.data[index]["city_name"].toString(),
                           ),
                         );
                       },
@@ -285,16 +291,37 @@ upperCards(context, _pageController, apiText) {
                       ),
                     ),
                     Positioned(
-                      top: 10,
-                      left: 10,
+                      top: dynamicHeight(context, .012),
+                      left: dynamicWidth(context, .026),
                       child: Container(
                         decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(
-                              dynamicWidth(context, .012),
+                              dynamicWidth(context, .014),
                             ),
                             color: Colors.black45),
                         padding: EdgeInsets.all(dynamicWidth(context, 0.01)),
-                        child: Text(snapshot.data[index]["name"],style: TextStyle(color: Colors.white,fontSize: dynamicWidth(context, 0.05))),
+                        child: RichText(
+                          text: TextSpan(
+                            style: Theme.of(context).textTheme.bodyText2,
+                            children: [
+                              WidgetSpan(
+                                child: Icon(
+                                  Icons.location_on_outlined,
+                                  color: myWhite,
+                                  size: dynamicWidth(context, .05),
+                                ),
+                              ),
+                              TextSpan(
+                                text: " " + snapshot.data[index]["name"],
+                                style: TextStyle(
+                                  color: myWhite,
+                                  fontWeight: FontWeight.normal,
+                                  fontSize: dynamicWidth(context, .046),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
                       ),
                     )
                   ],
@@ -370,7 +397,7 @@ lowerCards(context, tabImages) {
           scrollDirection: Axis.horizontal,
           itemCount: 3,
           itemBuilder: (context, i) {
-            return cityCard(context, homeCard: true, shimmercheck: true);
+            return cityCard(context, homeCard: true, shimmerCheck: true);
           },
         );
       },
