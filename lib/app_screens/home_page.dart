@@ -121,7 +121,12 @@ class _HomePageState extends State<HomePage>
             SizedBox(
               height: dynamicHeight(context, 0.01),
             ),
-            upperCards(context, _pageController),
+            Container(
+              height: dynamicHeight(context, 0.2),
+              child: TabBarView(
+                controller: _tabController,
+                children: [upperCards(context, _pageController,"popularPlaces"),upperCards(context, _pageController,"recommendedPlaces"),upperCards(context, _pageController,"hiddenGems"),upperCards(context, _pageController,"newDestinations"),]),
+            ),
             smoothIndicatorCustomView(context, _pageController),
             rowText(context),
             lowerCards(context, tabImages1),
@@ -141,6 +146,7 @@ tabsListing(context, controller,tabarray) {
     child: DefaultTabController(
       length: tabarray.length,
       child: TabBar(
+        controller: controller,
         labelPadding: EdgeInsets.symmetric(
           horizontal: dynamicWidth(context, .03),
         ),
@@ -228,9 +234,9 @@ rowText(context) {
   );
 }
 
-upperCards(context, _pageController) {
+upperCards(context, _pageController,apiText) {
   return FutureBuilder(
-      future: ApiData().getInfo("recommendedPlaces"),
+      future: ApiData().getInfo(apiText),
       builder: (context, AsyncSnapshot snapshot) {
         if (snapshot.connectionState == ConnectionState.done) {
           return Container(
