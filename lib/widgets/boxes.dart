@@ -82,14 +82,17 @@ Widget districtCard(context, {image, dynamic text, page, check = false}) {
   );
 }
 
-Widget cityCard(context, {image, dynamic text, page, check = false}) {
+Widget cityCard(context,
+    {image, dynamic text, page, check = false, width = "", homeCard = false}) {
   return Padding(
     padding: EdgeInsets.symmetric(
       vertical: dynamicHeight(context, .014),
-      horizontal: dynamicWidth(context, .05),
+      horizontal: homeCard == false
+          ? dynamicWidth(context, .05)
+          : dynamicWidth(context, .024),
     ),
     child: Container(
-      width: dynamicWidth(context, .9),
+      width: width == "" ? dynamicWidth(context, .9) : width,
       height: dynamicHeight(context, .24),
       decoration: BoxDecoration(
         color: myWhite,
@@ -118,8 +121,8 @@ Widget cityCard(context, {image, dynamic text, page, check = false}) {
             Positioned(
               bottom: 0.0,
               child: Container(
-                width: dynamicWidth(context, .9),
-                height: dynamicHeight(context, .08),
+                width: width == "" ? dynamicWidth(context, .9) : width,
+                height: dynamicHeight(context, .074),
                 decoration: BoxDecoration(
                   color: myBlack.withOpacity(.6),
                   borderRadius: BorderRadius.circular(
@@ -128,19 +131,25 @@ Widget cityCard(context, {image, dynamic text, page, check = false}) {
                 ),
                 child: Padding(
                   padding: EdgeInsets.symmetric(
-                    horizontal: dynamicWidth(context, .06),
+                    horizontal: dynamicWidth(context, .054),
                   ),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Text(
-                        text.toString().toUpperCase(),
-                        style: TextStyle(
-                          color: myWhite,
-                          fontWeight: FontWeight.w600,
-                          fontSize: dynamicWidth(context, .06),
+                      SizedBox(
+                        width: homeCard == false
+                            ? dynamicWidth(context, .5)
+                            : dynamicWidth(context, .42),
+                        child: Text(
+                          text.toString().toUpperCase(),
+                          style: TextStyle(
+                            color: myWhite,
+                            fontWeight: FontWeight.w600,
+                            fontSize: dynamicWidth(context, .056),
+                          ),
+                          overflow: TextOverflow.ellipsis,
+                          maxLines: 1,
                         ),
-                        maxLines: 1,
                       ),
                       InkWell(
                         onTap: () {

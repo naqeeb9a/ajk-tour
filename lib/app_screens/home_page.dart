@@ -1,13 +1,18 @@
+import 'package:ajk_tour/api/apis.dart';
+import 'package:ajk_tour/app_screens/popular_cities.dart';
 import 'package:ajk_tour/app_screens/search_screen.dart';
 import 'package:ajk_tour/app_screens/selected_detail_page.dart';
 import 'package:ajk_tour/utils/app_routes.dart';
 import 'package:ajk_tour/utils/config.dart';
+import 'package:ajk_tour/widgets/boxes.dart';
 import 'package:ajk_tour/widgets/dynamic_sizes.dart';
 import 'package:ajk_tour/widgets/essential_widgets.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
+
+import 'city_details.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -177,8 +182,24 @@ rowText(context) {
             fontSize: dynamicWidth(context, .05),
           ),
         ),
-        const Text(
-          'Show All',
+        InkWell(
+          onTap: () {
+            push(
+              context,
+              PopularCities(),
+            );
+          },
+          child: Padding(
+            padding: EdgeInsets.symmetric(
+              vertical: dynamicHeight(context, .01),
+            ),
+            child: Text(
+              'Show All',
+              style: TextStyle(
+                fontSize: dynamicWidth(context, .038),
+              ),
+            ),
+          ),
         ),
       ],
     ),
@@ -229,33 +250,36 @@ upperCards(context, _pageController) {
 
 lowerCards(context, tabImages) {
   return Container(
-    margin: EdgeInsets.symmetric(
-      vertical: dynamicHeight(context, .026),
+    height: dynamicHeight(context, .24),
+    padding: EdgeInsets.only(
+      left: dynamicWidth(context, .04),
     ),
-    height: dynamicHeight(context, .16),
-    child: ListView.builder(
-      itemCount: tabImages.length,
-      padding: EdgeInsets.symmetric(
-        horizontal: dynamicWidth(context, .06),
-      ),
-      scrollDirection: Axis.horizontal,
-      physics: const BouncingScrollPhysics(),
-      itemBuilder: (context, index) {
-        return Container(
-          height: dynamicHeight(context, .16),
-          width: dynamicWidth(context, .54),
-          margin: EdgeInsets.only(
-            right: dynamicWidth(context, .04),
-          ),
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(
-              dynamicWidth(context, .03),
-            ),
-            image: DecorationImage(
-              fit: BoxFit.cover,
-              image: CachedNetworkImageProvider(tabImages[index]),
-            ),
-          ),
+    child: FutureBuilder(
+      future: ApiData().getInfo("popularCities"),
+      builder: (BuildContext context, AsyncSnapshot snapshot) {
+        if (snapshot.hasData) {
+          return ListView.builder(
+            scrollDirection: Axis.horizontal,
+            itemCount: snapshot.data.length > 3 ? 3 : snapshot.data.length,
+            itemBuilder: (context, i) {
+              return cityCard(
+                context,
+                image: snapshot.data[i]["image"].toString(),
+                text: snapshot.data[i]["name"].toString(),
+                width: dynamicWidth(context, .8),
+                homeCard: true,
+                page: CityDetail(
+                  stateName: snapshot.data[i]["name"].toString(),
+                  image: snapshot.data[i]["image"].toString(),
+                  index: snapshot.data[i]["id"],
+                  i: i,
+                ),
+              );
+            },
+          );
+        }
+        return const Center(
+          child: CircularProgressIndicator(),
         );
       },
     ),
