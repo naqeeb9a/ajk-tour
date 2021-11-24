@@ -198,3 +198,69 @@ dynamic customDialog(context) {
     ),
   );
 }
+
+Widget searchbar(context, {enabled = true, controller, submitFunction = ""}) {
+  return Container(
+    margin: EdgeInsets.symmetric(
+      horizontal: dynamicWidth(context, .02),
+    ),
+    decoration: BoxDecoration(
+        color: myWhite,
+        borderRadius: BorderRadius.circular(
+          dynamicWidth(context, .02),
+        ),
+        boxShadow: const [
+          BoxShadow(
+              color: myGrey,
+              spreadRadius: 2,
+              blurRadius: 3,
+              offset: Offset(2, 2))
+        ]),
+    child: Row(
+      children: [
+        enabled == true
+            ? InkWell(
+                onTap: () {
+                  Navigator.pop(context);
+                },
+                child: Padding(
+                  padding: EdgeInsets.only(
+                    left: dynamicWidth(context, .03),
+                  ),
+                  child: const Icon(
+                    Icons.arrow_back,
+                  ),
+                ),
+              )
+            : Container(),
+        Expanded(
+          child: TextField(
+            controller: controller,
+            enabled: enabled,
+            autofocus: enabled,
+            textInputAction: TextInputAction.done,
+            decoration: InputDecoration(
+                border: InputBorder.none,
+                focusedBorder: InputBorder.none,
+                enabledBorder: InputBorder.none,
+                errorBorder: InputBorder.none,
+                disabledBorder: InputBorder.none,
+                contentPadding: EdgeInsets.only(
+                  left: dynamicWidth(context, .04),
+                ),
+                hintText: "Search Place"),
+            onSubmitted: submitFunction == "" ? (value) {} : submitFunction,
+          ),
+        ),
+        Padding(
+          padding: EdgeInsets.only(
+            right: dynamicWidth(context, .03),
+          ),
+          child: const Icon(
+            Icons.search_sharp,
+          ),
+        ),
+      ],
+    ),
+  );
+}

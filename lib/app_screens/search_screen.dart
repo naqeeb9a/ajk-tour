@@ -1,4 +1,6 @@
+import 'package:ajk_tour/api/apis.dart';
 import 'package:ajk_tour/utils/config.dart';
+import 'package:ajk_tour/widgets/boxes.dart';
 import 'package:ajk_tour/widgets/dynamic_sizes.dart';
 import 'package:ajk_tour/widgets/essential_widgets.dart';
 import 'package:flutter/material.dart';
@@ -13,113 +15,96 @@ class SearchScreen extends StatefulWidget {
 class _SearchScreenState extends State<SearchScreen> {
   TextEditingController searchText = TextEditingController();
 
+  dynamic searchResult;
+
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: myGrey,
-      floatingActionButton: sosFloatingButton(context),
-      body: SafeArea(
-        child: Center(
-          child: SizedBox(
-            width: dynamicWidth(context, 0.94),
-            child: Column(
-              children: [
-                Padding(
-                  padding: EdgeInsets.symmetric(
-                    vertical: dynamicHeight(context, .02),
-                  ),
-                  child: Hero(
-                    tag: "SearchBar",
-                    child: Material(
-                      color: noColor,
-                      child: searchbar(
-                        context,
-                        controller: searchText,
-                        setStateFunction: () {
-                          setState(
-                            () {},
-                          );
-                        },
+    return SafeArea(
+      child: Scaffold(
+        backgroundColor: myGrey,
+        floatingActionButton: sosFloatingButton(context),
+        body: Column(
+          children: [
+            Center(
+              child: SizedBox(
+                width: dynamicWidth(context, 0.94),
+                child: Column(
+                  children: [
+                    Padding(
+                      padding: EdgeInsets.symmetric(
+                        vertical: dynamicHeight(context, .02),
+                      ),
+                      child: Hero(
+                        tag: "SearchBar",
+                        child: Material(
+                          color: noColor,
+                          child: searchbar(
+                            context,
+                            controller: searchText,
+                            submitFunction: (value) {
+                              setState(() {
+                                searchResult =
+                                    ApiData().getInfo("search/$value");
+                              });
+                            },
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+            searchText.text.toString() == ""
+                ? Container()
+                : Flexible(
+                    child: SizedBox(
+                      width: dynamicWidth(context, 1),
+                      child: Padding(
+                        padding: EdgeInsets.symmetric(
+                          vertical: dynamicHeight(context, .024),
+                        ),
+                        child: FutureBuilder(
+                          future: searchResult,
+                          builder:
+                              (BuildContext context, AsyncSnapshot snapshot) {
+                            if (snapshot.hasData) {
+                              return ListView.builder(
+                                physics: const BouncingScrollPhysics(),
+                                itemCount: snapshot.data.length,
+                                itemBuilder: (context, i) {
+                                  return placeCard(
+                                    context,
+                                    image: snapshot.data[i]["image"].toString(),
+                                    placeName:
+                                        snapshot.data[i]["name"].toString(),
+                                    city: "",
+                                    latitude:
+                                        snapshot.data[i]["latitude"].toString(),
+                                    longitude: snapshot.data[i]["longitude"]
+                                        .toString(),
+                                    description: snapshot.data[i]["description"]
+                                        .toString(),
+                                  );
+                                },
+                              );
+                            } else {
+                              return ListView.builder(
+                                itemCount: 3,
+                                physics: const NeverScrollableScrollPhysics(),
+                                itemBuilder: (BuildContext context, int index) {
+                                  return placeCard(context, shimmerCheck: true);
+                                },
+                              );
+                            }
+                          },
+                        ),
                       ),
                     ),
                   ),
-                ),
-              ],
-            ),
-          ),
+          ],
         ),
       ),
     );
   }
-}
-
-Widget searchbar(context, {enabled = true, controller, setStateFunction}) {
-  return Container(
-    margin: const EdgeInsets.symmetric(horizontal: 5),
-    decoration: BoxDecoration(
-        color: myWhite,
-        borderRadius: BorderRadius.circular(
-          dynamicWidth(context, .02),
-        ),
-        boxShadow: const [
-          BoxShadow(
-              color: myGrey,
-              spreadRadius: 2,
-              blurRadius: 3,
-              offset: Offset(2, 2))
-        ]),
-    child: Row(
-      children: [
-        (enabled == true)
-            ? InkWell(
-                onTap: () {
-                  Navigator.pop(context);
-                },
-                child: Padding(
-                  padding: EdgeInsets.only(
-                    left: dynamicWidth(context, .03),
-                  ),
-                  child: const Icon(
-                    Icons.arrow_back,
-                  ),
-                ),
-              )
-            : Container(),
-        Expanded(
-          child: TextField(
-            controller: controller,
-            enabled: enabled,
-            autofocus: enabled,
-            decoration: InputDecoration(
-                border: InputBorder.none,
-                focusedBorder: InputBorder.none,
-                enabledBorder: InputBorder.none,
-                errorBorder: InputBorder.none,
-                disabledBorder: InputBorder.none,
-                contentPadding: EdgeInsets.only(
-                  left: dynamicWidth(context, .04),
-                ),
-                hintText: "Search Place"),
-            onSubmitted: (value) {
-              controller.text = value;
-              setStateFunction();
-            },
-          ),
-        ),
-        InkWell(
-          onTap: () {
-            setStateFunction();
-          },
-          child: Padding(
-            padding: EdgeInsets.only(
-              right: dynamicWidth(context, .03),
-            ),
-            child: const Icon(
-              Icons.search_sharp,
-            ),
-          ),
-        ),
-      ],
-    ),
-  );
 }
