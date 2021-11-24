@@ -284,25 +284,26 @@ upperCards(context, _pageController,apiText) {
             ),
           );
         } else {
-          return Shimmer.fromColors(
-            baseColor: Colors.grey,
-            highlightColor: Colors.grey[300]!,
-            child: Container(
-              height: dynamicHeight(context, 0.2),
-              margin: EdgeInsets.only(
-                top: dynamicHeight(context, .01),
-              ),
-              child: PageView(
-                physics: const BouncingScrollPhysics(),
-                controller: _pageController,
-                scrollDirection: Axis.horizontal,
-                children: List.generate(
-                  4,
-                  (int index) => Container(
+          return Container(
+            height: dynamicHeight(context, 0.2),
+            margin: EdgeInsets.only(
+              top: dynamicHeight(context, .01),
+            ),
+            child: PageView(
+              physics: const BouncingScrollPhysics(),
+              controller: _pageController,
+              scrollDirection: Axis.horizontal,
+              children: List.generate(
+                4,
+                (int index) => Shimmer.fromColors(
+                  baseColor:Colors.grey,
+                  highlightColor: Colors.grey[300]!,
+                  child: Container(
                     margin: EdgeInsets.only(
                       right: dynamicWidth(context, .04),
                     ),
                     decoration: BoxDecoration(
+                      color: Colors.grey,
                       borderRadius: BorderRadius.circular(
                         dynamicWidth(context, .024),
                       ),
