@@ -69,34 +69,44 @@ class _SearchScreenState extends State<SearchScreen> {
                           builder:
                               (BuildContext context, AsyncSnapshot snapshot) {
                             if (snapshot.hasData) {
-                              return ListView.builder(
-                                physics: const BouncingScrollPhysics(),
-                                itemCount: snapshot.data.length,
-                                itemBuilder: (context, i) {
-                                  return placeCard(
-                                    context,
-                                    image: snapshot.data[i]["image"].toString(),
-                                    placeName:
-                                        snapshot.data[i]["name"].toString(),
-                                    city: "",
-                                    latitude:
-                                        snapshot.data[i]["latitude"].toString(),
-                                    longitude: snapshot.data[i]["longitude"]
-                                        .toString(),
-                                    description: snapshot.data[i]["description"]
-                                        .toString(),
-                                  );
-                                },
-                              );
-                            } else {
-                              return ListView.builder(
-                                itemCount: 3,
-                                physics: const NeverScrollableScrollPhysics(),
-                                itemBuilder: (BuildContext context, int index) {
-                                  return placeCard(context, shimmerCheck: true);
-                                },
-                              );
+                              if (snapshot.data.length.toString() == "0") {
+                                return Center(
+                                  child: Text(
+                                    "Nothing To Show!!\nSearch Something Else!!",
+                                    style: TextStyle(
+                                      fontSize: dynamicWidth(context, .06),
+                                    ),
+                                    textAlign: TextAlign.center,
+                                  ),
+                                );
+                              } else {
+                                return ListView.builder(
+                                  physics: const BouncingScrollPhysics(),
+                                  itemCount: snapshot.data.length,
+                                  itemBuilder: (context, i) {
+                                    return placeCard(
+                                      context,
+                                      image:
+                                          snapshot.data[i]["image"].toString(),
+                                      placeName:
+                                          snapshot.data[i]["name"].toString(),
+                                      city: snapshot.data[i]["city_name"]
+                                          .toString(),
+                                      latitude: snapshot.data[i]["latitude"]
+                                          .toString(),
+                                      longitude: snapshot.data[i]["longitude"]
+                                          .toString(),
+                                      description: snapshot.data[i]
+                                              ["description"]
+                                          .toString(),
+                                    );
+                                  },
+                                );
+                              }
                             }
+                            return Center(
+                              child: CircularProgressIndicator(),
+                            );
                           },
                         ),
                       ),
