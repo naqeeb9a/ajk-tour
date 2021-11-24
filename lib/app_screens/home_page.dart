@@ -26,20 +26,20 @@ class _HomePageState extends State<HomePage>
     with SingleTickerProviderStateMixin {
   final _pageController = PageController(viewportFraction: 0.8);
   late TabController _tabController;
-  List<Widget> tabsArray=[
-          Tab(
-            child: Text('Recommended'),
-          ),
-          Tab(
-            child: Text('Popular'),
-          ),
-          Tab(
-            child: Text('New Destination'),
-          ),
-          Tab(
-            child: Text('Hidden Gems'),
-          ),
-        ];
+  List<Widget> tabsArray = [
+    Tab(
+      child: Text('Recommended'),
+    ),
+    Tab(
+      child: Text('Popular'),
+    ),
+    Tab(
+      child: Text('New Destination'),
+    ),
+    Tab(
+      child: Text('Hidden Gems'),
+    ),
+  ];
 
   @override
   void initState() {
@@ -117,15 +117,18 @@ class _HomePageState extends State<HomePage>
                 ],
               ),
             ),
-            tabsListing(context, _tabController,tabsArray),
+            tabsListing(context, _tabController, tabsArray),
             SizedBox(
               height: dynamicHeight(context, 0.01),
             ),
             Container(
-              height: dynamicHeight(context, 0.2),
-              child: TabBarView(
-                controller: _tabController,
-                children: [upperCards(context, _pageController,"popularPlaces"),upperCards(context, _pageController,"recommendedPlaces"),upperCards(context, _pageController,"hiddenGems"),upperCards(context, _pageController,"newDestinations"),]),
+              height: dynamicHeight(context, 0.25),
+              child: TabBarView(controller: _tabController, children: [
+                upperCards(context, _pageController, "popularPlaces"),
+                upperCards(context, _pageController, "recommendedPlaces"),
+                upperCards(context, _pageController, "hiddenGems"),
+                upperCards(context, _pageController, "newDestinations"),
+              ]),
             ),
             smoothIndicatorCustomView(context, _pageController),
             rowText(context),
@@ -137,7 +140,7 @@ class _HomePageState extends State<HomePage>
   }
 }
 
-tabsListing(context, controller,tabarray) {
+tabsListing(context, controller, tabarray) {
   return Container(
     height: dynamicHeight(context, .04),
     margin: EdgeInsets.only(
@@ -146,20 +149,19 @@ tabsListing(context, controller,tabarray) {
     child: DefaultTabController(
       length: tabarray.length,
       child: TabBar(
-        controller: controller,
-        labelPadding: EdgeInsets.symmetric(
-          horizontal: dynamicWidth(context, .03),
-        ),
-        indicatorPadding: EdgeInsets.symmetric(
-          horizontal: dynamicWidth(context, .03),
-        ),
-        isScrollable: true,
-        labelColor: myBlack,
-        unselectedLabelColor: myBlack.withOpacity(.5),
-        indicatorColor: myBlack,
-        indicatorSize: TabBarIndicatorSize.label,
-        tabs: tabarray
-      ),
+          controller: controller,
+          labelPadding: EdgeInsets.symmetric(
+            horizontal: dynamicWidth(context, .03),
+          ),
+          indicatorPadding: EdgeInsets.symmetric(
+            horizontal: dynamicWidth(context, .03),
+          ),
+          isScrollable: true,
+          labelColor: myBlack,
+          unselectedLabelColor: myBlack.withOpacity(.5),
+          indicatorColor: myBlack,
+          indicatorSize: TabBarIndicatorSize.label,
+          tabs: tabarray),
     ),
   );
 }
@@ -234,13 +236,13 @@ rowText(context) {
   );
 }
 
-upperCards(context, _pageController,apiText) {
+upperCards(context, _pageController, apiText) {
   return FutureBuilder(
       future: ApiData().getInfo(apiText),
       builder: (context, AsyncSnapshot snapshot) {
         if (snapshot.connectionState == ConnectionState.done) {
           return Container(
-            height: dynamicHeight(context, 0.2),
+            height: dynamicHeight(context, 0.25),
             margin: EdgeInsets.only(
               top: dynamicHeight(context, .01),
             ),
@@ -250,42 +252,59 @@ upperCards(context, _pageController,apiText) {
               scrollDirection: Axis.horizontal,
               children: List.generate(
                 snapshot.data.length,
-                (int index) => GestureDetector(
-                  onTap: () {
-                    push(
-                      context,
-                      SelectedDetailPage(
-                        previousImage: snapshot.data[index]["image"],
-                        previousDescription: snapshot.data[index]
-                            ["description"],
-                        previousText: snapshot.data[index]["name"],
-                      ),
-                    );
-                  },
-                  child: Container(
-                    margin: EdgeInsets.only(
-                      right: dynamicWidth(context, .04),
-                    ),
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(
-                        dynamicWidth(context, .024),
-                      ),
-                      image: DecorationImage(
-                        fit: BoxFit.cover,
-                        image: CachedNetworkImageProvider(
-                          snapshot.data[index]["image"],
-                          scale: 1,
+                (int index) => Stack(
+                  children: [
+                    GestureDetector(
+                      onTap: () {
+                        push(
+                          context,
+                          SelectedDetailPage(
+                            previousImage: snapshot.data[index]["image"],
+                            previousDescription: snapshot.data[index]
+                                ["description"],
+                            previousText: snapshot.data[index]["name"],
+                          ),
+                        );
+                      },
+                      child: Container(
+                        margin: EdgeInsets.only(
+                          right: dynamicWidth(context, .04),
+                        ),
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(
+                            dynamicWidth(context, .024),
+                          ),
+                          image: DecorationImage(
+                            fit: BoxFit.cover,
+                            image: CachedNetworkImageProvider(
+                              snapshot.data[index]["image"],
+                              scale: 1,
+                            ),
+                          ),
                         ),
                       ),
                     ),
-                  ),
+                    Positioned(
+                      top: 10,
+                      left: 10,
+                      child: Container(
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(
+                              dynamicWidth(context, .012),
+                            ),
+                            color: Colors.black45),
+                        padding: EdgeInsets.all(dynamicWidth(context, 0.01)),
+                        child: Text(snapshot.data[index]["name"],style: TextStyle(color: Colors.white,fontSize: dynamicWidth(context, 0.05))),
+                      ),
+                    )
+                  ],
                 ),
               ),
             ),
           );
         } else {
           return Container(
-            height: dynamicHeight(context, 0.2),
+            height: dynamicHeight(context, 0.25),
             margin: EdgeInsets.only(
               top: dynamicHeight(context, .01),
             ),
@@ -296,7 +315,7 @@ upperCards(context, _pageController,apiText) {
               children: List.generate(
                 4,
                 (int index) => Shimmer.fromColors(
-                  baseColor:Colors.grey,
+                  baseColor: Colors.grey,
                   highlightColor: Colors.grey[300]!,
                   child: Container(
                     margin: EdgeInsets.only(
@@ -347,15 +366,11 @@ lowerCards(context, tabImages) {
             },
           );
         }
-        return  ListView.builder(
+        return ListView.builder(
           scrollDirection: Axis.horizontal,
           itemCount: 3,
           itemBuilder: (context, i) {
-            return cityCard(
-              context,
-              homeCard: true,
-              shimmercheck: true           
-            );
+            return cityCard(context, homeCard: true, shimmercheck: true);
           },
         );
       },
