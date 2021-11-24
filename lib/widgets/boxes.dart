@@ -83,8 +83,34 @@ Widget districtCard(context, {image, dynamic text, page, check = false}) {
 }
 
 Widget cityCard(context,
-    {image, dynamic text, page, check = false, width = "", homeCard = false}) {
-  return Padding(
+    {image, dynamic text, page, check = false, width = "", homeCard = false,shimmercheck=false}) {
+  return(shimmercheck==true)? Shimmer.fromColors(
+    baseColor: Colors.grey,
+    highlightColor: Colors.grey[300]!,
+    child: Padding(
+      padding: EdgeInsets.symmetric(
+      vertical: dynamicHeight(context, .014),
+      horizontal:dynamicWidth(context, .024),
+    ),
+      child: Container(
+          width:dynamicWidth(context, .8),
+          height: dynamicHeight(context, .24),
+          decoration: BoxDecoration(
+            color: Colors.grey,
+            borderRadius: BorderRadius.circular(
+              dynamicHeight(context, .015),
+            ),
+            boxShadow: [
+              BoxShadow(
+                color: myBlack.withOpacity(0.4),
+                spreadRadius: 2,
+                blurRadius: 6,
+                offset: const Offset(0, 3), // changes position of shadow
+              ),
+            ],
+          ),),
+    ),
+  ):Padding(
     padding: EdgeInsets.symmetric(
       vertical: dynamicHeight(context, .014),
       horizontal: homeCard == false

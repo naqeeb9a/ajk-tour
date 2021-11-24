@@ -347,8 +347,16 @@ lowerCards(context, tabImages) {
             },
           );
         }
-        return const Center(
-          child: CircularProgressIndicator(),
+        return  ListView.builder(
+          scrollDirection: Axis.horizontal,
+          itemCount: 3,
+          itemBuilder: (context, i) {
+            return cityCard(
+              context,
+              homeCard: true,
+              shimmercheck: true           
+            );
+          },
         );
       },
     ),
