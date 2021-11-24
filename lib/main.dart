@@ -31,7 +31,7 @@ class MyApp extends StatelessWidget {
       title: 'AJK Tour',
       theme: ThemeData(
         primarySwatch: primaryColor,
-        textTheme: GoogleFonts.acmeTextTheme(
+        textTheme: GoogleFonts.balsamiqSansTextTheme(
           Theme.of(context).textTheme,
         ),
       ),
