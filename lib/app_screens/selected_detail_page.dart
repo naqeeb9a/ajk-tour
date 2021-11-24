@@ -7,10 +7,15 @@ import 'package:flutter/material.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 class SelectedDetailPage extends StatelessWidget {
+  final String previousImage;
+  final String previousDescription;
+  final String previousText;
   final _pageController = PageController();
 
   SelectedDetailPage({
     Key? key,
+    required this.previousImage,
+    required this.previousDescription, required this.previousText,
   }) : super(key: key);
 
   @override
@@ -24,12 +29,12 @@ class SelectedDetailPage extends StatelessWidget {
             controller: _pageController,
             scrollDirection: Axis.horizontal,
             children: List.generate(
-              tabImages.length,
+              1,
               (int index) => Container(
                 decoration: BoxDecoration(
                   image: DecorationImage(
                     fit: BoxFit.fitHeight,
-                    image: CachedNetworkImageProvider(tabImages[index]),
+                    image: CachedNetworkImageProvider(previousImage),
                   ),
                 ),
               ),
@@ -81,7 +86,7 @@ class SelectedDetailPage extends StatelessWidget {
                 children: [
                   SmoothPageIndicator(
                     controller: _pageController,
-                    count: tabImages1.length,
+                    count: 1,
                     effect: ExpandingDotsEffect(
                       activeDotColor: myWhite,
                       dotColor: myWhite.withOpacity(.6),
@@ -94,8 +99,8 @@ class SelectedDetailPage extends StatelessWidget {
                     padding: EdgeInsets.only(
                       top: dynamicHeight(context, .02),
                     ),
-                    child: const Text(
-                      "recommendedModel tagLine",
+                    child:  Text(
+                      previousText.toString(),
                       maxLines: 2,
                       overflow: TextOverflow.fade,
                       style: TextStyle(
@@ -107,8 +112,8 @@ class SelectedDetailPage extends StatelessWidget {
                     padding: EdgeInsets.only(
                       top: dynamicHeight(context, .02),
                     ),
-                    child: const Text(
-                      "recommendedModel description",
+                    child:  Text(
+                      previousDescription.toString(),
                       maxLines: 3,
                       overflow: TextOverflow.fade,
                       style: TextStyle(

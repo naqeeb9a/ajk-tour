@@ -10,6 +10,7 @@ import 'package:ajk_tour/widgets/essential_widgets.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
+import 'package:shimmer/shimmer.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 import 'city_details.dart';
@@ -21,8 +22,36 @@ class HomePage extends StatefulWidget {
   _HomePageState createState() => _HomePageState();
 }
 
-class _HomePageState extends State<HomePage> {
+class _HomePageState extends State<HomePage>
+    with SingleTickerProviderStateMixin {
   final _pageController = PageController(viewportFraction: 0.8);
+  late TabController _tabController;
+  List<Widget> tabsArray=[
+          Tab(
+            child: Text('Recommended'),
+          ),
+          Tab(
+            child: Text('Popular'),
+          ),
+          Tab(
+            child: Text('New Destination'),
+          ),
+          Tab(
+            child: Text('Hidden Gems'),
+          ),
+        ];
+
+  @override
+  void initState() {
+    super.initState();
+    _tabController = TabController(vsync: this, length: tabsArray.length);
+  }
+
+  @override
+  void dispose() {
+    _tabController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -88,12 +117,12 @@ class _HomePageState extends State<HomePage> {
                 ],
               ),
             ),
-            tabsListing(context),
+            tabsListing(context, _tabController,tabsArray),
             SizedBox(
               height: dynamicHeight(context, 0.01),
             ),
             upperCards(context, _pageController),
-            smoothIndicatorCustomView(context, tabImages, _pageController),
+            smoothIndicatorCustomView(context, _pageController),
             rowText(context),
             lowerCards(context, tabImages1),
           ],
@@ -103,16 +132,14 @@ class _HomePageState extends State<HomePage> {
   }
 }
 
-tabsListing(
-  context,
-) {
+tabsListing(context, controller,tabarray) {
   return Container(
     height: dynamicHeight(context, .04),
     margin: EdgeInsets.only(
       left: dynamicWidth(context, .04),
     ),
     child: DefaultTabController(
-      length: 4,
+      length: tabarray.length,
       child: TabBar(
         labelPadding: EdgeInsets.symmetric(
           horizontal: dynamicWidth(context, .03),
@@ -125,42 +152,37 @@ tabsListing(
         unselectedLabelColor: myBlack.withOpacity(.5),
         indicatorColor: myBlack,
         indicatorSize: TabBarIndicatorSize.label,
-        tabs: const [
-          Tab(
-            child: Text('Recommended'),
-          ),
-          Tab(
-            child: Text('Popular'),
-          ),
-          Tab(
-            child: Text('New Destination'),
-          ),
-          Tab(
-            child: Text('Hidden Gems'),
-          )
-        ],
+        tabs: tabarray
       ),
     ),
   );
 }
 
-smoothIndicatorCustomView(context, tabsArray, _pageController) {
+smoothIndicatorCustomView(context, _pageController) {
   return Padding(
     padding: EdgeInsets.symmetric(
       vertical: dynamicHeight(context, .014),
       horizontal: dynamicWidth(context, .08),
     ),
-    child: SmoothPageIndicator(
-      controller: _pageController,
-      count: tabsArray.length,
-      effect: ExpandingDotsEffect(
-        activeDotColor: myBlack,
-        dotColor: myBlack.withOpacity(.4),
-        dotHeight: dynamicHeight(context, .008),
-        dotWidth: dynamicWidth(context, .02),
-        spacing: dynamicWidth(context, .016),
-      ),
-    ),
+    child: FutureBuilder(
+        future: ApiData().getInfo("recommendedPlaces"),
+        builder: (context, AsyncSnapshot snapshot) {
+          if (snapshot.connectionState == ConnectionState.done) {
+            return SmoothPageIndicator(
+              controller: _pageController,
+              count: snapshot.data.length,
+              effect: ExpandingDotsEffect(
+                activeDotColor: myBlack,
+                dotColor: myBlack.withOpacity(.4),
+                dotHeight: dynamicHeight(context, .008),
+                dotWidth: dynamicWidth(context, .02),
+                spacing: dynamicWidth(context, .016),
+              ),
+            );
+          } else {
+            return Container();
+          }
+        }),
   );
 }
 
@@ -207,45 +229,85 @@ rowText(context) {
 }
 
 upperCards(context, _pageController) {
-  return Container(
-    height: dynamicHeight(context, 0.2),
-    margin: EdgeInsets.only(
-      top: dynamicHeight(context, .01),
-    ),
-    child: PageView(
-      physics: const BouncingScrollPhysics(),
-      controller: _pageController,
-      scrollDirection: Axis.horizontal,
-      children: List.generate(
-        tabImages.length,
-        (int index) => GestureDetector(
-          onTap: () {
-            push(
-              context,
-              SelectedDetailPage(),
-            );
-          },
-          child: Container(
+  return FutureBuilder(
+      future: ApiData().getInfo("recommendedPlaces"),
+      builder: (context, AsyncSnapshot snapshot) {
+        if (snapshot.connectionState == ConnectionState.done) {
+          return Container(
+            height: dynamicHeight(context, 0.2),
             margin: EdgeInsets.only(
-              right: dynamicWidth(context, .04),
+              top: dynamicHeight(context, .01),
             ),
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(
-                dynamicWidth(context, .024),
-              ),
-              image: DecorationImage(
-                fit: BoxFit.cover,
-                image: CachedNetworkImageProvider(
-                  tabImages[index],
-                  scale: 1,
+            child: PageView(
+              physics: const BouncingScrollPhysics(),
+              controller: _pageController,
+              scrollDirection: Axis.horizontal,
+              children: List.generate(
+                snapshot.data.length,
+                (int index) => GestureDetector(
+                  onTap: () {
+                    push(
+                      context,
+                      SelectedDetailPage(
+                        previousImage: snapshot.data[index]["image"],
+                        previousDescription: snapshot.data[index]
+                            ["description"],
+                        previousText: snapshot.data[index]["name"],
+                      ),
+                    );
+                  },
+                  child: Container(
+                    margin: EdgeInsets.only(
+                      right: dynamicWidth(context, .04),
+                    ),
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(
+                        dynamicWidth(context, .024),
+                      ),
+                      image: DecorationImage(
+                        fit: BoxFit.cover,
+                        image: CachedNetworkImageProvider(
+                          snapshot.data[index]["image"],
+                          scale: 1,
+                        ),
+                      ),
+                    ),
+                  ),
                 ),
               ),
             ),
-          ),
-        ),
-      ),
-    ),
-  );
+          );
+        } else {
+          return Shimmer.fromColors(
+            baseColor: Colors.grey,
+            highlightColor: Colors.grey[300]!,
+            child: Container(
+              height: dynamicHeight(context, 0.2),
+              margin: EdgeInsets.only(
+                top: dynamicHeight(context, .01),
+              ),
+              child: PageView(
+                physics: const BouncingScrollPhysics(),
+                controller: _pageController,
+                scrollDirection: Axis.horizontal,
+                children: List.generate(
+                  4,
+                  (int index) => Container(
+                    margin: EdgeInsets.only(
+                      right: dynamicWidth(context, .04),
+                    ),
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(
+                        dynamicWidth(context, .024),
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+            ),
+          );
+        }
+      });
 }
 
 lowerCards(context, tabImages) {
