@@ -18,7 +18,7 @@ class _DistrictsState extends State<Districts> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: myGrey,
-      appBar: customBar("DISTRICTS", bgColor: myGrey),
+      appBar: customBar(context, "DISTRICTS", bgColor: myGrey),
       floatingActionButton: sosFloatingButton(context),
       body: Padding(
         padding: EdgeInsets.only(

@@ -73,7 +73,7 @@ class _HomePageState extends State<HomePage>
                   children: [
                     Image.asset(
                       "assets/ajk_logo.png",
-                      height: dynamicHeight(context, .08),
+                      height: dynamicHeight(context, .06),
                     ),
                     SizedBox(
                       width: dynamicWidth(context, .06),
@@ -81,7 +81,7 @@ class _HomePageState extends State<HomePage>
                     Text(
                       "Welcome to\nAzad Jammu Kashmir",
                       style: TextStyle(
-                          fontSize: dynamicWidth(context, .054),
+                          fontSize: dynamicWidth(context, .05),
                           fontWeight: FontWeight.bold),
                     ),
                   ],
@@ -99,7 +99,7 @@ class _HomePageState extends State<HomePage>
                   Text(
                     "Explore\nthe Nature",
                     style: TextStyle(
-                        fontSize: dynamicWidth(context, .1),
+                        fontSize: dynamicWidth(context, .08),
                         fontWeight: FontWeight.bold),
                   ),
                   InkWell(
@@ -209,7 +209,7 @@ rowText(context) {
           'Popular Cities',
           style: TextStyle(
             fontWeight: FontWeight.bold,
-            fontSize: dynamicWidth(context, .05),
+            fontSize: dynamicWidth(context, .048),
           ),
         ),
         InkWell(
@@ -226,7 +226,7 @@ rowText(context) {
             child: Text(
               'Show All',
               style: TextStyle(
-                fontSize: dynamicWidth(context, .038),
+                fontSize: dynamicWidth(context, .036),
               ),
             ),
           ),
@@ -308,7 +308,7 @@ upperCards(context, _pageController, apiText) {
                                 child: Icon(
                                   Icons.location_on_outlined,
                                   color: myWhite,
-                                  size: dynamicWidth(context, .05),
+                                  size: dynamicWidth(context, .046),
                                 ),
                               ),
                               TextSpan(
@@ -316,7 +316,7 @@ upperCards(context, _pageController, apiText) {
                                 style: TextStyle(
                                   color: myWhite,
                                   fontWeight: FontWeight.normal,
-                                  fontSize: dynamicWidth(context, .046),
+                                  fontSize: dynamicWidth(context, .04),
                                 ),
                               ),
                             ],

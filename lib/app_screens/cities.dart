@@ -29,7 +29,7 @@ class _CitiesState extends State<Cities> {
     return Scaffold(
       backgroundColor: myGrey,
       floatingActionButton: sosFloatingButton(context),
-      appBar: customBar(widget.cityName, bgColor: myGrey),
+      appBar: customBar(context, widget.cityName, bgColor: myGrey),
       body: FutureBuilder(
         future: ApiData().getInfo("cities/" + widget.index.toString()),
         builder: (BuildContext context, AsyncSnapshot snapshot) {

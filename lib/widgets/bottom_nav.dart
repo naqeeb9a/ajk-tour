@@ -1,7 +1,8 @@
+import 'package:ajk_tour/app_screens/districts.dart';
 import 'package:ajk_tour/app_screens/home_page.dart';
 import 'package:ajk_tour/app_screens/settings.dart';
-import 'package:ajk_tour/app_screens/districts.dart';
 import 'package:ajk_tour/utils/config.dart';
+import 'package:ajk_tour/widgets/dynamic_sizes.dart';
 import 'package:flutter/material.dart';
 import 'package:salomon_bottom_bar/salomon_bottom_bar.dart';
 
@@ -22,26 +23,53 @@ class _BottomNavState extends State<BottomNav> {
       body: Center(
         child: _getPage(currentPage),
       ),
-      bottomNavigationBar: SalomonBottomBar(
-        currentIndex: currentPage,
-        onTap: (i) => setState(() => currentPage = i),
-        items: [
-          SalomonBottomBarItem(
-            icon: const Icon(Icons.home),
-            title: const Text("Home"),
-            selectedColor: myBlack,
-          ),
-          SalomonBottomBarItem(
-            icon: const Icon(Icons.grid_view_rounded),
-            title: const Text("Districts"),
-            selectedColor: myBlack,
-          ),
-          SalomonBottomBarItem(
-            icon: const Icon(Icons.settings),
-            title: const Text("Settings"),
-            selectedColor: myBlack,
-          ),
-        ],
+      bottomNavigationBar: SizedBox(
+        height: dynamicHeight(context, .07),
+        child: SalomonBottomBar(
+          currentIndex: currentPage,
+          onTap: (i) => setState(() => currentPage = i),
+          items: [
+            SalomonBottomBarItem(
+              icon: Icon(
+                Icons.home,
+                size: dynamicWidth(context, .056),
+              ),
+              title: Text(
+                "Home",
+                style: TextStyle(
+                  fontSize: dynamicWidth(context, .036),
+                ),
+              ),
+              selectedColor: myBlack,
+            ),
+            SalomonBottomBarItem(
+              icon: Icon(
+                Icons.grid_view_rounded,
+                size: dynamicWidth(context, .056),
+              ),
+              title: Text(
+                "Districts",
+                style: TextStyle(
+                  fontSize: dynamicWidth(context, .036),
+                ),
+              ),
+              selectedColor: myBlack,
+            ),
+            SalomonBottomBarItem(
+              icon: Icon(
+                Icons.settings,
+                size: dynamicWidth(context, .056),
+              ),
+              title: Text(
+                "Settings",
+                style: TextStyle(
+                  fontSize: dynamicWidth(context, .036),
+                ),
+              ),
+              selectedColor: myBlack,
+            ),
+          ],
+        ),
       ),
     );
   }

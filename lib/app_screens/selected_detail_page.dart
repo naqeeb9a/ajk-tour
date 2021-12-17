@@ -51,16 +51,16 @@ class SelectedDetailPage extends StatelessWidget {
           SafeArea(
             child: Padding(
               padding: EdgeInsets.symmetric(
-                vertical: dynamicHeight(context, .01),
-                horizontal: dynamicWidth(context, .04),
+                vertical: dynamicHeight(context, .014),
+                horizontal: dynamicWidth(context, .044),
               ),
               child: InkWell(
                 onTap: () {
                   pop(context);
                 },
                 child: Container(
-                  width: dynamicWidth(context, .14),
-                  height: dynamicHeight(context, .06),
+                  width: dynamicWidth(context, .1),
+                  height: dynamicWidth(context, .1),
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(
                       dynamicWidth(context, .02),
@@ -113,6 +113,8 @@ class SelectedDetailPage extends StatelessWidget {
                       overflow: TextOverflow.fade,
                       style: TextStyle(
                         color: myWhite,
+                        fontSize: dynamicWidth(context, .042),
+                        fontWeight: FontWeight.bold,
                       ),
                     ),
                   ),
@@ -123,14 +125,15 @@ class SelectedDetailPage extends StatelessWidget {
                     child: Text(
                       previousDescription.toString(),
                       maxLines: 2,
-                      overflow: TextOverflow.fade,
+                      overflow: TextOverflow.ellipsis,
                       style: TextStyle(
                         color: myWhite,
+                        fontSize: dynamicWidth(context, .038),
                       ),
                     ),
                   ),
                   SizedBox(
-                    height: dynamicHeight(context, .05),
+                    height: dynamicHeight(context, .04),
                   ),
                   InkWell(
                     onTap: () {
@@ -150,17 +153,21 @@ class SelectedDetailPage extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.start,
                       children: <Widget>[
                         Container(
-                          width: dynamicWidth(context, .34),
-                          height: dynamicHeight(context, .06),
+                          width: dynamicWidth(context, .32),
+                          height: dynamicHeight(context, .05),
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(
                               dynamicWidth(context, .02),
                             ),
                             color: myWhite,
                           ),
-                          child: const Center(
+                          child: Center(
                             child: Text(
                               'Explore Now >>',
+                              style: TextStyle(
+                                fontSize: dynamicWidth(context, .034),
+                                fontWeight: FontWeight.w600,
+                              ),
                             ),
                           ),
                         )

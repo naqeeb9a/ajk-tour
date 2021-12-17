@@ -24,6 +24,7 @@ class CityDetail extends StatefulWidget {
 class _CityDetailState extends State<CityDetail> {
   @override
   Widget build(BuildContext context) {
+    print("\n\n\n image = ${widget.index.toString()}");
     return Scaffold(
       backgroundColor: myGrey,
       floatingActionButton: sosFloatingButton(context),
@@ -34,7 +35,7 @@ class _CityDetailState extends State<CityDetail> {
             imageHeader(
               context,
               widget.image.toString(),
-              widget.stateName,
+              widget.stateName.toString(),
               true,
               assetImage: false,
             ),

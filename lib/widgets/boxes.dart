@@ -7,77 +7,72 @@ import 'package:flutter/material.dart';
 import 'package:shimmer/shimmer.dart';
 
 Widget districtCard(context, {image, dynamic text, page, check = false}) {
-  return Padding(
-    padding: EdgeInsets.symmetric(
-      vertical: dynamicHeight(context, .002),
-    ),
-    child: Container(
-      width: dynamicWidth(context, 1),
-      height: dynamicHeight(context, .3),
-      color: noColor,
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.start,
-        children: [
-          SizedBox(
-            height: dynamicHeight(context, .22),
-            child: CachedNetworkImage(
-              imageUrl: image,
-              fit: BoxFit.fitWidth,
-              width: dynamicWidth(context, 1),
-              placeholder: (context, url) => Image.asset(
-                "assets/ajk_logo.png",
-                scale: 8,
-              ),
+  return Container(
+    width: dynamicWidth(context, 1),
+    height: dynamicHeight(context, .27),
+    color: noColor,
+    child: Column(
+      mainAxisAlignment: MainAxisAlignment.start,
+      children: [
+        SizedBox(
+          height: dynamicHeight(context, .2),
+          child: CachedNetworkImage(
+            imageUrl: image,
+            fit: BoxFit.fitWidth,
+            width: dynamicWidth(context, 1),
+            placeholder: (context, url) => Image.asset(
+              "assets/ajk_logo.png",
+              scale: 8,
             ),
           ),
-          SizedBox(
-            height: dynamicHeight(context, .08),
-            child: Padding(
-              padding: EdgeInsets.symmetric(
-                horizontal: dynamicWidth(context, .06),
-              ),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text(
-                    text.toString().toUpperCase(),
-                    style: TextStyle(
-                      color: myBlack,
-                      fontWeight: FontWeight.w600,
-                      fontSize: dynamicWidth(context, .06),
-                    ),
-                    maxLines: 1,
+        ),
+        SizedBox(
+          height: dynamicHeight(context, .06),
+          child: Padding(
+            padding: EdgeInsets.symmetric(
+              horizontal: dynamicWidth(context, .06),
+            ),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text(
+                  text.toString().toUpperCase(),
+                  style: TextStyle(
+                    color: myBlack,
+                    fontWeight: FontWeight.w600,
+                    fontSize: dynamicWidth(context, .05),
                   ),
-                  InkWell(
-                    onTap: () {
-                      push(
-                        context,
-                        page,
-                      );
-                    },
-                    child: Container(
-                      width: dynamicWidth(context, .24),
-                      height: dynamicHeight(context, .046),
-                      color: myBlack,
-                      child: Center(
-                        child: Text(
-                          "Explore >>",
-                          style: TextStyle(
-                            color: myWhite,
-                            fontWeight: FontWeight.w600,
-                            fontSize: dynamicWidth(context, .036),
-                          ),
-                          maxLines: 1,
+                  maxLines: 1,
+                ),
+                InkWell(
+                  onTap: () {
+                    push(
+                      context,
+                      page,
+                    );
+                  },
+                  child: Container(
+                    width: dynamicWidth(context, .22),
+                    height: dynamicHeight(context, .042),
+                    color: myBlack,
+                    child: Center(
+                      child: Text(
+                        "Explore >>",
+                        style: TextStyle(
+                          color: myWhite,
+                          fontWeight: FontWeight.w600,
+                          fontSize: dynamicWidth(context, .032),
                         ),
+                        maxLines: 1,
                       ),
                     ),
                   ),
-                ],
-              ),
+                ),
+              ],
             ),
           ),
-        ],
-      ),
+        ),
+      ],
     ),
   );
 }
@@ -132,7 +127,7 @@ Widget cityCard(context,
             decoration: BoxDecoration(
               color: myWhite,
               borderRadius: BorderRadius.circular(
-                dynamicHeight(context, .015),
+                dynamicHeight(context, .012),
               ),
               image: DecorationImage(
                 image: CachedNetworkImageProvider(
@@ -157,11 +152,11 @@ Widget cityCard(context,
                     bottom: 0.0,
                     child: Container(
                       width: width == "" ? dynamicWidth(context, .9) : width,
-                      height: dynamicHeight(context, .074),
+                      height: dynamicHeight(context, .066),
                       decoration: BoxDecoration(
                         color: myBlack.withOpacity(.6),
                         borderRadius: BorderRadius.circular(
-                          dynamicHeight(context, .015),
+                          dynamicHeight(context, .012),
                         ),
                       ),
                       child: Padding(
@@ -180,7 +175,7 @@ Widget cityCard(context,
                                 style: TextStyle(
                                   color: myWhite,
                                   fontWeight: FontWeight.w600,
-                                  fontSize: dynamicWidth(context, .056),
+                                  fontSize: dynamicWidth(context, .046),
                                 ),
                                 overflow: TextOverflow.ellipsis,
                                 maxLines: 1,
@@ -196,12 +191,12 @@ Widget cityCard(context,
                               child: Hero(
                                 tag: text,
                                 child: Container(
-                                  width: dynamicWidth(context, .26),
-                                  height: dynamicHeight(context, .05),
+                                  width: dynamicWidth(context, .24),
+                                  height: dynamicHeight(context, .044),
                                   decoration: BoxDecoration(
                                     color: myGrey,
                                     borderRadius: BorderRadius.circular(
-                                      dynamicHeight(context, .01),
+                                      dynamicHeight(context, .008),
                                     ),
                                   ),
                                   child: Center(
@@ -210,7 +205,7 @@ Widget cityCard(context,
                                       style: TextStyle(
                                         color: myBlack,
                                         fontWeight: FontWeight.w600,
-                                        fontSize: dynamicWidth(context, .038),
+                                        fontSize: dynamicWidth(context, .034),
                                       ),
                                       maxLines: 1,
                                     ),

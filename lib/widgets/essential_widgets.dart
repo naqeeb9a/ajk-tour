@@ -4,12 +4,15 @@ import 'package:flutter/material.dart';
 
 import 'dynamic_sizes.dart';
 
-customBar(text, {color = "", elevation = "", bgColor = ""}) {
+customBar(context, text, {color = "", elevation = "", bgColor = ""}) {
   return AppBar(
     title: Text(
       text,
-      style: const TextStyle(
-          color: myBlack, fontWeight: FontWeight.bold, fontSize: 30),
+      style: TextStyle(
+        color: myBlack,
+        fontWeight: FontWeight.bold,
+        fontSize: dynamicWidth(context, .052),
+      ),
     ),
     centerTitle: true,
     iconTheme: IconThemeData(
@@ -91,7 +94,9 @@ Widget imageHeader(context, image, text, appBar, {height = "", assetImage}) {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              appBar == true ? customBar("", color: myWhite) : const SizedBox(),
+              appBar == true
+                  ? customBar(context, "", color: myWhite)
+                  : const SizedBox(),
               Padding(
                 padding: EdgeInsets.only(
                   bottom: dynamicHeight(context, .02),
@@ -101,7 +106,7 @@ Widget imageHeader(context, image, text, appBar, {height = "", assetImage}) {
                   style: TextStyle(
                     color: myWhite,
                     fontWeight: FontWeight.w600,
-                    fontSize: dynamicWidth(context, .08),
+                    fontSize: dynamicWidth(context, .06),
                   ),
                   maxLines: 1,
                 ),
@@ -115,19 +120,30 @@ Widget imageHeader(context, image, text, appBar, {height = "", assetImage}) {
 }
 
 Widget sosFloatingButton(context) {
-  return FloatingActionButton.extended(
-    label: const Text("SOS"),
-    onPressed: () {
-      showDialog(
-          context: context,
-          builder: (BuildContext context) {
-            return customDialog(context);
-          });
-    },
-    backgroundColor: Colors.red,
-    isExtended: true,
-    icon: const Icon(
-      Icons.add_alert,
+  return SizedBox(
+    height: dynamicHeight(context, .052),
+    width: dynamicWidth(context, .26),
+    child: FloatingActionButton.extended(
+      label: Text(
+        "SOS",
+        style: TextStyle(
+          fontWeight: FontWeight.bold,
+          fontSize: dynamicWidth(context, .036),
+        ),
+      ),
+      onPressed: () {
+        showDialog(
+            context: context,
+            builder: (BuildContext context) {
+              return customDialog(context);
+            });
+      },
+      backgroundColor: Colors.red,
+      isExtended: true,
+      icon: Icon(
+        Icons.add_alert,
+        size: dynamicWidth(context, .054),
+      ),
     ),
   );
 }
@@ -142,7 +158,7 @@ dynamic customDialog(context) {
       alignment: Alignment.topCenter,
       children: [
         SizedBox(
-          height: dynamicHeight(context, .44),
+          height: dynamicHeight(context, .38),
           child: Padding(
             padding: EdgeInsets.fromLTRB(
               dynamicWidth(context, .1),
@@ -158,7 +174,7 @@ dynamic customDialog(context) {
                   style: TextStyle(
                     color: primaryGreen,
                     fontWeight: FontWeight.bold,
-                    fontSize: dynamicWidth(context, .06),
+                    fontSize: dynamicWidth(context, .054),
                   ),
                 ),
                 Text(
@@ -166,7 +182,7 @@ dynamic customDialog(context) {
                   "\nWe received your Name, Mobile Number and Location."
                   "\nSoon we'll be there!",
                   style: TextStyle(
-                    fontSize: dynamicWidth(context, .046),
+                    fontSize: dynamicWidth(context, .042),
                   ),
                   textAlign: TextAlign.justify,
                 ),
@@ -175,10 +191,11 @@ dynamic customDialog(context) {
                     Navigator.of(context).pop();
                   },
                   color: primaryGreen,
-                  child: const Text(
+                  child: Text(
                     'Got It',
                     style: TextStyle(
                       color: Colors.white,
+                      fontSize: dynamicWidth(context, .04),
                     ),
                   ),
                 )
@@ -187,11 +204,11 @@ dynamic customDialog(context) {
           ),
         ),
         Positioned(
-          top: -dynamicHeight(context, .07),
+          top: -dynamicHeight(context, .058),
           child: Image.asset(
             "assets/ajk_police.png",
             fit: BoxFit.cover,
-            width: dynamicWidth(context, .3),
+            width: dynamicWidth(context, .26),
           ),
         ),
       ],

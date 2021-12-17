@@ -21,7 +21,7 @@ class _PopularCitiesState extends State<PopularCities> {
     return Scaffold(
       backgroundColor: myGrey,
       floatingActionButton: sosFloatingButton(context),
-      appBar: customBar("Popular Cities", bgColor: myGrey),
+      appBar: customBar(context, "Popular Cities", bgColor: myGrey),
       body: FutureBuilder(
         future: ApiData().getInfo("popularCities"),
         builder: (BuildContext context, AsyncSnapshot snapshot) {
